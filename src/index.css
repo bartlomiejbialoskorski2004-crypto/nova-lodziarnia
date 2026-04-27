@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-nova-bg: #FFF9F5;
+  --color-nova-text: #4A3933;
+  --color-nova-pink: #f472b6;
+  --color-nova-pistachio: #D4F1F4;
+  --color-nova-caramel: #FFDAB9;
+  --color-nova-cream: #FFF9F5;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-nova-bg);
+  color: var(--color-nova-text);
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 0%, rgba(255, 209, 220, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(212, 241, 244, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255, 218, 185, 0.4) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom Image masking for premium feel */
+.oval-mask {
+  border-radius: 9999px;
+}  
+
+.subtle-shadow {
+  box-shadow: 0 10px 40px -10px rgba(74, 57, 51, 0.08);
+}
+
+/* Frosted Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
