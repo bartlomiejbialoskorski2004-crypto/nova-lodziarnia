@@ -18,8 +18,8 @@ export default function Navbar() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   
   // Refined transformations for the "Pill" effect - Responsive
-  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "80%"]);
-  const navMaxWidth = useTransform(scrollY, [0, 100], ["1280px", isMobile ? "100%" : "900px"]);
+  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
+  const navMaxWidth = useTransform(scrollY, [0, 100], [isMobile ? "100%" : "1280px", isMobile ? "100%" : "900px"]);
   const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 12 : 20]);
   const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
   const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
