@@ -19,21 +19,18 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
-  // Prevent scroll when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -52,18 +49,34 @@ export default function Navbar() {
 
   return (
     <>
-      <nav 
-        className={cn(
-          "fixed left-0 right-0 z-[100] transition-all duration-700 ease-[0.16,1,0.3,1]",
-          isScrolled 
-            ? "top-6 mx-auto w-[95%] max-w-5xl rounded-full bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl py-3 px-8" 
-            : "top-0 w-full bg-transparent py-8 px-10 border-transparent"
-        )}
-      >
-        <div className="flex items-center justify-between">
-          
+      <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center pointer-events-none">
+        <motion.nav 
+          initial={false}
+          animate={{
+            width: isScrolled ? "90%" : "100%",
+            maxWidth: isScrolled ? "1000px" : "100%",
+            top: isScrolled ? 24 : 0,
+            borderRadius: isScrolled ? 100 : 0,
+            backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.6)" : "rgba(255, 255, 255, 0)",
+            backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
+            paddingLeft: isScrolled ? 32 : 40,
+            paddingRight: isScrolled ? 32 : 40,
+            paddingTop: isScrolled ? 12 : 24,
+            paddingBottom: isScrolled ? 12 : 24,
+            borderBottomWidth: isScrolled ? 1 : 0,
+            borderColor: "rgba(255, 255, 255, 0.4)",
+            boxShadow: isScrolled ? "0 20px 40px -15px rgba(0,0,0,0.1)" : "0 0px 0px rgba(0,0,0,0)",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 30,
+            mass: 0.8
+          }}
+          className="pointer-events-auto border-white/40 flex items-center justify-between relative overflow-hidden"
+        >
           {/* Desktop Left Nav */}
-          <div className="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60">
+          <div className="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60 min-w-[200px]">
             <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group">
               {t.nav.menu}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
@@ -74,19 +87,18 @@ export default function Navbar() {
             </a>
           </div>
           
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className={cn(
-              "transition-all duration-500", 
-              isScrolled ? "scale-75 translate-x-0" : "absolute left-1/2 -translate-x-1/2"
-            )}
-          >
-            <Logo />
+          {/* Logo - Centered with Framer Motion for flawless scaling */}
+          <Link to="/" className="flex items-center justify-center">
+            <motion.div
+              animate={{ scale: isScrolled ? 0.8 : 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <Logo />
+            </motion.div>
           </Link>
 
           {/* Desktop Right Nav */}
-          <div className="hidden md:flex items-center justify-end gap-10 relative">
+          <div className="hidden md:flex items-center justify-end gap-10 min-w-[200px] relative">
             <button 
               onClick={toggleLanguage}
               className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group"
@@ -98,7 +110,7 @@ export default function Navbar() {
               as="a"
               href="#order"
               text={t.nav.orderNow}
-              className="scale-75 origin-right"
+              className="scale-90"
             />
           </div>
 
@@ -112,8 +124,8 @@ export default function Navbar() {
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-        </div>
-      </nav>
+        </motion.nav>
+      </div>
 
       {/* Full Screen Mobile Menu Overlay */}
       <AnimatePresence>
@@ -123,7 +135,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] bg-nova-bg flex flex-col pt-32 px-10 pb-12 md:hidden"
+            className="fixed inset-0 z-[110] bg-nova-bg flex flex-col pt-32 px-10 pb-12 md:hidden"
           >
             {/* Background Grain/Noise */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
