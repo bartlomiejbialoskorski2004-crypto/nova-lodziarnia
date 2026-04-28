@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FlowButton } from './ui/flow-button';
 import { Logo } from './ui/logo';
@@ -14,34 +14,6 @@ export default function Navbar() {
   const location = useLocation();
   
   const { scrollY } = useScroll();
-  
-  // Apply a spring to the scroll value for ultra-smooth inertia
-  const smoothScrollY = useSpring(scrollY, {
-    stiffness: 100,
-    damping: 30,
-    mass: 1,
-    restDelta: 0.001
-  });
-  
-  // Transformation ranges - now using smoothScrollY
-  const scrollRange = [0, 200]; // Increased range for slower, smoother morphing
-  
-  const navWidth = useTransform(smoothScrollY, scrollRange, ["100%", isMobile ? "90%" : "85%"]);
-  const navTop = useTransform(smoothScrollY, scrollRange, [0, isMobile ? 12 : 20]);
-  const navRadius = useTransform(smoothScrollY, scrollRange, [0, 100]);
-  const navPaddingY = useTransform(smoothScrollY, scrollRange, [isMobile ? 16 : 24, isMobile ? 8 : 10]);
-  const navPaddingX = useTransform(smoothScrollY, scrollRange, [isMobile ? 24 : 48, isMobile ? 16 : 32]);
-  
-  const navBg = useTransform(smoothScrollY, scrollRange, ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
-  const navBorder = useTransform(smoothScrollY, scrollRange, ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
-  
-  // Mobile specific Logo movement - using Width percentage for better interpolation than flex
-  const mobileLeftSpacerWidth = useTransform(smoothScrollY, scrollRange, ["33%", "0%"]);
-  const mobileRightSpacerWidth = useTransform(smoothScrollY, scrollRange, ["33%", "33%"]);
-  
-  const logoScale = useTransform(smoothScrollY, scrollRange, [isMobile ? 1.15 : 1, isMobile ? 0.7 : 0.75]);
-  const sideGap = useTransform(smoothScrollY, scrollRange, [40, 24]);
-  const navShadow = useTransform(smoothScrollY, scrollRange, ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -49,6 +21,23 @@ export default function Navbar() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+  
+  // Transformation ranges
+  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
+  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 12 : 20]);
+  const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
+  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
+  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
+  
+  const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
+  const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
+  
+  // Logo movement and scale
+  // For mobile: Left spacer width goes from 1fr to 0px
+  const mobileSpacerFlex = useTransform(scrollY, [0, 100], [1, 0]);
+  const logoScale = useTransform(scrollY, [0, 100], [isMobile ? 1.2 : 1, isMobile ? 0.7 : 0.75]);
+  const sideGap = useTransform(scrollY, [0, 100], [40, 24]);
+  const navShadow = useTransform(scrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
@@ -95,11 +84,11 @@ export default function Navbar() {
             borderWidth: 1,
             backdropFilter: "blur(12px)",
           }}
-          className="pointer-events-auto flex items-center justify-between relative overflow-hidden"
+          className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-all duration-300"
         >
-          {/* Mobile Left Spacer / Desktop Nav Links */}
+          {/* Left Spacer (Mobile) / Nav Links (Desktop) */}
           {isMobile ? (
-            <motion.div style={{ width: mobileLeftSpacerWidth }} className="flex-shrink-0" />
+            <motion.div style={{ flex: mobileSpacerFlex }} className="md:hidden" />
           ) : (
             <motion.div 
               style={{ gap: sideGap }}
@@ -116,16 +105,16 @@ export default function Navbar() {
             </motion.div>
           )}
           
-          {/* Logo - Centered at start, Left-aligned after scroll */}
+          {/* Logo */}
           <Link to="/" className="flex flex-shrink-0 items-center justify-center">
             <motion.div style={{ scale: logoScale }}>
               <Logo />
             </motion.div>
           </Link>
 
-          {/* Mobile Right Spacer (Menu) / Desktop Nav Buttons */}
+          {/* Right Spacer (Mobile) / Nav Buttons (Desktop) */}
           {isMobile ? (
-            <motion.div style={{ width: mobileRightSpacerWidth }} className="flex md:hidden items-center justify-end">
+            <div className="flex md:hidden items-center justify-end flex-1">
               <button 
                 onClick={toggleMenu}
                 className="p-2 text-nova-text hover:text-nova-pink transition-colors"
@@ -133,7 +122,7 @@ export default function Navbar() {
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
-            </motion.div>
+            </div>
           ) : (
             <motion.div 
               style={{ gap: sideGap }}
