@@ -5,7 +5,7 @@ export default function Story() {
   const { t } = useLanguage();
 
   return (
-    <section id="story" className="py-24 md:py-32 bg-transparent relative z-10">
+    <section id="story" className="py-24 md:py-32 bg-transparent relative z-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 md:gap-24 items-center">
         
         {/* Left Side: Images */}

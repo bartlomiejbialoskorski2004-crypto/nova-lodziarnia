@@ -7,7 +7,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-32 md:pt-40 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center pt-32 md:pt-40 overflow-hidden max-w-[100vw]">
       <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
         
         {/* Text Content */}
