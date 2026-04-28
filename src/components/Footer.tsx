@@ -41,11 +41,7 @@ export default function Footer() {
               <div className="space-y-12">
                 <LocationMap 
                   location={t.footer.downtown} 
-                  coordinates="52.2297° N, 21.0122° E"
-                />
-                <LocationMap 
-                  location={t.footer.kiosk} 
-                  coordinates="52.2394° N, 21.0360° E"
+                  coordinates="50.0515° N, 19.9449° E"
                 />
               </div>
             </div>
