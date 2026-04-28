@@ -3,8 +3,7 @@ import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlassButton } from './ui/glass-button';
-import { GlowButton } from './ui/glow-button';
+import { PlasticButton } from './ui/plastic-button';
 import { Logo } from './ui/logo';
 
 export default function Navbar() {
@@ -47,8 +46,14 @@ export default function Navbar() {
           
           {/* Desktop Left Nav */}
           <div className="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60">
-            <Link to="/menu" className="hover:text-nova-pink transition-colors">{t.nav.menu}</Link>
-            <a href="/#story" className="hover:text-nova-pink transition-colors">{t.nav.story}</a>
+            <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group">
+              {t.nav.menu}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+            </Link>
+            <a href="/#story" className="relative py-1 hover:text-nova-text transition-colors group">
+              {t.nav.story}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+            </a>
           </div>
           
           {/* Logo */}
@@ -57,30 +62,31 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Right Nav */}
-          <div className="hidden md:flex items-center justify-end gap-8 relative">
+          <div className="hidden md:flex items-center justify-end gap-10 relative">
             <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:text-nova-pink transition-all"
+              className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group"
             >
               <Globe className="w-3 h-3" /> {language.toUpperCase()}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
             </button>
-            <GlowButton 
+            <PlasticButton 
               as="a"
               href="#order"
-              label={t.nav.orderNow}
-              className="scale-90 md:scale-100"
+              text={t.nav.orderNow}
+              className="scale-90"
             />
           </div>
 
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-4 ml-auto">
-            <GlassButton 
-              size="icon"
+            <button 
               onClick={toggleMenu}
+              className="p-2 text-nova-text"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </GlassButton>
+            </button>
           </div>
         </div>
       </nav>
@@ -134,16 +140,14 @@ export default function Navbar() {
                   transition={{ delay: 0.6 }}
                   className="flex items-center justify-between py-6 border-t border-nova-text/10"
                 >
-                  <GlassButton 
-                    size="sm"
+                  <button 
                     onClick={toggleLanguage}
-                    className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em]"
+                    className="relative py-1 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group"
                   >
-                    <span className="flex items-center gap-3">
-                      <Globe className="w-5 h-5 text-nova-pink" />
-                      <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na Angielski'}</span>
-                    </span>
-                  </GlassButton>
+                    <Globe className="w-5 h-5 text-nova-pink" />
+                    <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na Angielski'}</span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+                  </button>
                 </motion.div>
 
                 <motion.div 
@@ -152,12 +156,14 @@ export default function Navbar() {
                   transition={{ delay: 0.7 }}
                   className="flex items-center gap-6"
                 >
-                  <GlassButton size="icon" as="a" href="#">
+                  <a href="#" className="relative p-2 text-nova-text hover:text-nova-pink transition-all group">
                     <Instagram className="w-6 h-6" />
-                  </GlassButton>
-                  <GlassButton size="icon" as="a" href="#">
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+                  </a>
+                  <a href="#" className="relative p-2 text-nova-text hover:text-nova-pink transition-all group">
                     <Mail className="w-6 h-6" />
-                  </GlassButton>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+                  </a>
                   <div className="flex-1" />
                   <Link to="/" className="opacity-40">
                     <Logo className="scale-75 origin-right" />

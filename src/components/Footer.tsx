@@ -1,7 +1,7 @@
 import { ArrowRight, MapPin, Mail, Instagram, Clock } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LocationMap } from './ui/expand-map';
-import { GlassButton } from './ui/glass-button';
+import { PlasticButton } from './ui/plastic-button';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -27,9 +27,9 @@ export default function Footer() {
                 className="flex-1 bg-white/50 backdrop-blur-sm border border-white/60 py-3.5 px-6 rounded-full focus:outline-none focus:bg-white/70 transition-colors shadow-inner text-sm"
                 required
               />
-              <GlassButton type="submit" size="icon">
+              <PlasticButton type="submit" className="!px-4 !py-3">
                 <ArrowRight className="w-4 h-4" />
-              </GlassButton>
+              </PlasticButton>
             </form>
           </div>
 
@@ -64,12 +64,14 @@ export default function Footer() {
               <div className="mt-12 pt-12 border-t border-nova-text/10">
                  <h4 className="text-[10px] uppercase tracking-widest font-bold mb-4 text-nova-caramel">Follow Us</h4>
                  <div className="flex gap-4">
-                    <GlassButton size="icon" as="a" href="#">
-                      <Instagram className="w-4 h-4" />
-                    </GlassButton>
-                    <GlassButton size="icon" as="a" href="#">
-                      <Mail className="w-4 h-4" />
-                    </GlassButton>
+                    <a href="#" className="relative p-2 text-nova-text hover:text-nova-pink transition-all group">
+                      <Instagram className="w-5 h-5" />
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+                    </a>
+                    <a href="#" className="relative p-2 text-nova-text hover:text-nova-pink transition-all group">
+                      <Mail className="w-5 h-5" />
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+                    </a>
                  </div>
               </div>
             </div>
@@ -79,10 +81,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-widest text-nova-text/60">
           <p>{t.footer.rights.replace('{year}', new Date().getFullYear().toString())}</p>
-          <div className="flex items-center gap-6 text-nova-text">
-            <a href="#" className="hover:text-nova-pink transition-colors">Instagram</a>
-            <a href="#" className="hover:text-nova-pink transition-colors">TikTok</a>
-            <a href="#" className="hover:text-nova-pink transition-colors">Facebook</a>
+          <div className="flex items-center gap-6">
+            {['Instagram', 'TikTok', 'Facebook'].map(social => (
+              <a key={social} href="#" className="relative py-1 text-nova-text/60 hover:text-nova-text transition-all group">
+                {social}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
           </div>
         </div>
 

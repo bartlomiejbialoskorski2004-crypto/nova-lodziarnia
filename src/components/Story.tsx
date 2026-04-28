@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlassButton } from './ui/glass-button';
 
 export default function Story() {
   const { t } = useLanguage();
@@ -79,9 +78,13 @@ export default function Story() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-10"
           >
-            <GlassButton>
-              <span className="text-xs font-bold uppercase tracking-widest">{t.story.cta}</span>
-            </GlassButton>
+            <a 
+              href="#story" 
+              className="relative py-2 text-xs font-bold uppercase tracking-widest text-nova-text group inline-block"
+            >
+              {t.story.cta}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+            </a>
           </motion.div>
         </div>
 

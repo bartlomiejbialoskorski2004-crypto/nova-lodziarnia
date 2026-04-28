@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlowButton } from './ui/glow-button';
+import { PlasticButton } from './ui/plastic-button';
 
 export default function SeasonalOffer() {
   const { t } = useLanguage();
@@ -75,12 +75,12 @@ export default function SeasonalOffer() {
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ duration: 0.6, delay: 0.3 }}
-             className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto"
+             className="flex flex-col sm:flex-row items-center gap-10 w-full sm:w-auto"
           >
-            <GlowButton 
+            <PlasticButton 
               as="a"
               href="#order"
-              label={t.seasonal.cta}
+              text={t.seasonal.cta}
               className="w-full sm:w-auto"
             />
             <span className="text-[10px] font-bold uppercase tracking-widest text-nova-text/40">{t.seasonal.availableUntil}</span>

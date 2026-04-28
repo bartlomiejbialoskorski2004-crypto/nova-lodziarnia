@@ -2,8 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlassButton } from './ui/glass-button';
-import { GlowButton } from './ui/glow-button';
+import { PlasticButton } from './ui/plastic-button';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -47,23 +46,22 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row gap-8 items-center w-full sm:w-auto"
           >
-            <GlowButton 
+            <PlasticButton 
               as={Link}
               to="/menu"
-              label={t.hero.cta1}
+              text={t.hero.cta1}
               className="w-full sm:w-auto"
             />
             
-            <GlassButton 
-              size="lg"
-              as="a"
-              href="#locations"
-              className="w-full sm:w-auto"
+            <a 
+              href="#locations" 
+              className="relative py-2 text-xs font-bold uppercase tracking-widest text-nova-text/60 hover:text-nova-text transition-colors group"
             >
-              <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta2}</span>
-            </GlassButton>
+              {t.hero.cta2}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+            </a>
           </motion.div>
         </div>
 

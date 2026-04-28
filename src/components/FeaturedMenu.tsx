@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GlowCard } from './ui/spotlight-card';
-import { GlassButton } from './ui/glass-button';
 
 export default function FeaturedMenu() {
   const { t } = useLanguage();
@@ -56,15 +55,13 @@ export default function FeaturedMenu() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <GlassButton
-              as={Link}
+            <Link
               to="/menu"
-              size="sm"
+              className="relative py-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-nova-text group"
             >
-              <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
-                {t.featured.viewAll} <ArrowRight className="w-4 h-4" />
-              </span>
-            </GlassButton>
+              {t.featured.viewAll} <ArrowRight className="w-4 h-4" />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+            </Link>
           </motion.div>
         </div>
 
