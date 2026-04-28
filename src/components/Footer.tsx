@@ -1,125 +1,154 @@
-import { Instagram, Mail, MapPin, Clock, Facebook, Youtube, Twitter } from 'lucide-react';
+import { Instagram, Mail, MapPin, Clock, ArrowRight, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { motion } from 'motion/react';
+import { FlowButton } from './ui/flow-button';
 import { Logo } from './ui/logo';
 
 export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative mt-20 md:mt-40 overflow-hidden text-white">
+    <footer className="relative mt-32 pb-12 px-4 md:px-8 overflow-hidden">
       
-      {/* 1. Newsletter Hero Section - Matches the top part of the reference photo */}
-      <div className="relative h-[600px] md:h-[800px] flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/nova_footer_bg_1777394658096.png" 
-            alt="Artistic Gelato Landscape" 
-            className="w-full h-full object-cover brightness-75 scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-nova-bg/20 via-transparent to-nova-text/80 z-10" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-20 text-center max-w-4xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-8xl font-serif mb-12 tracking-tight"
-          >
-            Weekly News. <br />No Fluff.
-          </motion.h2>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative max-w-lg mx-auto"
-          >
-            <div className="flex items-center bg-white/5 backdrop-blur-2xl border border-white/20 rounded-full p-1.5 shadow-2xl transition-all focus-within:border-white/40 group">
-              <input 
-                type="email" 
-                placeholder="Enter Your E-mail"
-                className="bg-transparent border-none flex-1 px-8 py-3 text-sm focus:outline-none placeholder:text-white/40"
-              />
-              <button className="bg-white/10 hover:bg-white/20 text-white px-10 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all backdrop-blur-md">
-                Subscribe
-              </button>
-            </div>
-          </motion.div>
-        </div>
+      {/* Massive Typographic Backdrop */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.03] whitespace-nowrap z-0">
+        <h2 className="text-[30vw] font-serif font-black italic leading-none">NOVA</h2>
       </div>
 
-      {/* 2. Glass Footer Overlay - Matches the bottom panel of the reference photo */}
-      <div className="relative z-30 -mt-32 md:-mt-48 px-4 md:px-8 pb-8">
-        <div className="max-w-7xl mx-auto bg-white/[0.03] backdrop-blur-[32px] border border-white/10 rounded-[40px] p-8 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        
+        {/* The "Main Scoop" Container - A bold, asymmetric dark container */}
+        <div className="bg-nova-text rounded-[60px] md:rounded-[100px] p-8 md:p-20 text-white shadow-[0_50px_100px_-20px_rgba(45,30,23,0.3)] overflow-hidden relative group">
           
-          <div className="grid lg:grid-cols-12 gap-12 mb-16">
-            {/* Brand Column */}
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
-                <Logo variant="light" className="scale-75 origin-left" />
-                <span className="text-xl font-serif tracking-widest uppercase">Nova</span>
-              </div>
-              <p className="text-white/50 text-sm max-w-xs leading-relaxed font-light">
-                Nova brings high quality handcrafted gelato and artisanal coffee to the heart of the city – sweet moments for everyone.
-              </p>
-            </div>
+          {/* Decorative melting effect background */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-nova-pink/20 blur-[100px] rounded-full group-hover:bg-nova-pink/30 transition-colors duration-700" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-nova-pistachio/10 blur-[100px] rounded-full group-hover:bg-nova-pistachio/20 transition-colors duration-700" />
 
-            {/* Links Columns */}
-            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
-              <div>
-                <h4 className="text-white/80 text-xs font-bold uppercase tracking-widest mb-6">Explore</h4>
-                <ul className="space-y-4 text-white/40 text-xs font-light">
-                  <li><a href="#" className="hover:text-white transition-colors">Menu & Flavors</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Seasonal Specials</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Locations</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Gift Cards</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white/80 text-xs font-bold uppercase tracking-widest mb-6">About</h4>
-                <ul className="space-y-4 text-white/40 text-xs font-light">
-                  <li><a href="#" className="hover:text-white transition-colors">Our Story</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Meet the Team</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Artisanship</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                </ul>
-              </div>
-              <div className="hidden md:block">
-                <h4 className="text-white/80 text-xs font-bold uppercase tracking-widest mb-6">Support</h4>
-                <ul className="space-y-4 text-white/40 text-xs font-light">
-                  <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Report an Issue</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-white/30 text-[10px] uppercase tracking-widest font-light">
-              Designed by Nova Creative Studio
-            </div>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             
-            <div className="flex items-center gap-8">
-              <span className="text-white/30 text-[10px] uppercase tracking-widest font-light hidden sm:inline">Our Story Continues:</span>
-              <div className="flex gap-5 text-white/40">
-                <a href="#" className="hover:text-white transition-all"><Instagram className="w-4 h-4" /></a>
-                <a href="#" className="hover:text-white transition-all"><Facebook className="w-4 h-4" /></a>
-                <a href="#" className="hover:text-white transition-all"><Twitter className="w-4 h-4" /></a>
-                <a href="#" className="hover:text-white transition-all"><Youtube className="w-4 h-4" /></a>
+            {/* Column 1: Massive Brand & Socials (4 cols) */}
+            <div className="lg:col-span-5 flex flex-col items-start h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-8"
+              >
+                <Logo variant="light" className="scale-125 origin-left" />
+              </motion.div>
+              
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-serif leading-[1.1] mb-10"
+              >
+                {t.footer.title1} <br/>
+                <span className="italic text-nova-pink font-light">{t.footer.title2}</span>
+              </motion.h2>
+
+              <div className="flex gap-4 mt-auto">
+                {[
+                  { icon: Instagram, label: 'Instagram' },
+                  { icon: Mail, label: 'Email' },
+                  { icon: MessageCircle, label: 'TikTok' }
+                ].map((social, i) => (
+                  <motion.a
+                    key={i}
+                    href="#"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + (i * 0.1) }}
+                    className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-nova-text transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
               </div>
+            </div>
+
+            {/* Column 2: Newsletter & Locations (7 cols) */}
+            <div className="lg:col-span-7 grid md:grid-cols-2 gap-12 lg:gap-16">
+              
+              {/* Newsletter Sub-col */}
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold mb-8 text-white/40">
+                  {t.footer.newsletter || "Newsletter"}
+                </h4>
+                <p className="text-white/60 font-light mb-8 text-sm leading-relaxed">
+                  {t.footer.desc}
+                </p>
+                <form className="relative group/form">
+                  <input 
+                    type="email" 
+                    placeholder={t.footer.emailPlaceholder}
+                    className="w-full bg-white/5 border border-white/10 py-4 px-6 rounded-2xl focus:outline-none focus:border-nova-pink focus:bg-white/10 transition-all text-sm mb-4"
+                    required
+                  />
+                  <FlowButton 
+                    type="submit" 
+                    text={t.footer.subscribe || "Join"} 
+                    className="!w-full !border-white/20 !text-white hover:!border-transparent"
+                  />
+                </form>
+              </div>
+
+              {/* Info Sub-col */}
+              <div className="space-y-12">
+                {/* Locations */}
+                <div>
+                  <h4 className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] font-bold mb-6 text-nova-pink">
+                    <MapPin className="w-3 h-3" /> {t.footer.locations}
+                  </h4>
+                  <div className="space-y-4">
+                    <div className="group/loc cursor-pointer">
+                      <p className="text-white font-serif text-lg group-hover:text-nova-pink transition-colors">{t.footer.downtown}</p>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">Cracow, Poland</p>
+                    </div>
+                    <div className="group/loc cursor-pointer">
+                      <p className="text-white font-serif text-lg group-hover:text-nova-pink transition-colors">Nova Riverside</p>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">Coming Soon</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div>
+                  <h4 className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] font-bold mb-6 text-nova-pistachio">
+                    <Clock className="w-3 h-3" /> {t.footer.hours}
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4 text-white/60 font-light text-xs">
+                    <div>
+                      <p className="text-white/30 uppercase text-[9px] font-bold mb-1">Mon - Thu</p>
+                      <p>10:00 - 21:00</p>
+                    </div>
+                    <div>
+                      <p className="text-white/30 uppercase text-[9px] font-bold mb-1">Fri - Sun</p>
+                      <p>09:00 - 22:30</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
+          {/* Bottom Branding */}
+          <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20">
+              {t.footer.rights.replace('{year}', new Date().getFullYear().toString())}
+            </div>
+            <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-white/40">
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="#" className="hover:text-white transition-colors">Allergen Info</a>
+            </div>
+          </div>
         </div>
+
       </div>
     </footer>
   );
