@@ -12,20 +12,24 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   
-  // Use scroll position for linear interpolation
   const { scrollY } = useScroll();
   
-  // Define transformation ranges (from 0px to 150px of scroll)
-  const navWidth = useTransform(scrollY, [0, 150], ["100%", "90%"]);
-  const navMaxWidth = useTransform(scrollY, [0, 150], ["100%", "1100px"]);
-  const navTop = useTransform(scrollY, [0, 150], [0, 24]);
-  const navRadius = useTransform(scrollY, [0, 150], [0, 100]);
-  const navPaddingY = useTransform(scrollY, [0, 150], [24, 12]);
-  const navPaddingX = useTransform(scrollY, [0, 150], [40, 32]);
-  const navBg = useTransform(scrollY, [0, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.7)"]);
-  const navBorder = useTransform(scrollY, [0, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.4)"]);
-  const logoScale = useTransform(scrollY, [0, 150], [1, 0.8]);
-  const navShadow = useTransform(scrollY, [0, 150], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
+  // Refined transformations for the "Pill" effect
+  const navWidth = useTransform(scrollY, [0, 100], ["100%", "85%"]);
+  const navMaxWidth = useTransform(scrollY, [0, 100], ["1280px", "900px"]);
+  const navTop = useTransform(scrollY, [0, 100], [0, 20]);
+  const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
+  const navPaddingY = useTransform(scrollY, [0, 100], [24, 10]);
+  const navPaddingX = useTransform(scrollY, [0, 100], [48, 32]);
+  
+  // Background and Border - always slightly visible for "Thoughtful but minimal"
+  const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.7)"]);
+  const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
+  
+  // Element movement towards center
+  const sideGap = useTransform(scrollY, [0, 100], [40, 24]);
+  const logoScale = useTransform(scrollY, [0, 100], [1, 0.75]);
+  const navShadow = useTransform(scrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
@@ -70,34 +74,40 @@ export default function Navbar() {
             paddingRight: navPaddingX,
             boxShadow: navShadow,
             borderWidth: 1,
-            backdropFilter: "blur(12px)", // Constant blur or transform it? transform it below
+            backdropFilter: "blur(12px)",
           }}
-          className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-shadow"
+          className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-all duration-300"
         >
-          {/* Left Nav */}
-          <div className="hidden md:flex flex-1 items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60">
-            <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group">
+          {/* Left Nav - Moving towards center */}
+          <motion.div 
+            style={{ gap: sideGap }}
+            className="hidden md:flex flex-1 items-center text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60"
+          >
+            <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
               {t.nav.menu}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
             </Link>
-            <a href="/#story" className="relative py-1 hover:text-nova-text transition-colors group">
+            <a href="/#story" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
               {t.nav.story}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
             </a>
-          </div>
+          </motion.div>
           
-          {/* Logo */}
-          <Link to="/" className="flex flex-shrink-0 items-center justify-center">
+          {/* Logo - Smoothly scaling in the center */}
+          <Link to="/" className="flex flex-shrink-0 items-center justify-center px-8">
             <motion.div style={{ scale: logoScale }}>
               <Logo />
             </motion.div>
           </Link>
 
-          {/* Right Nav */}
-          <div className="hidden md:flex flex-1 items-center justify-end gap-10 relative">
+          {/* Right Nav - Moving towards center */}
+          <motion.div 
+            style={{ gap: sideGap }}
+            className="hidden md:flex flex-1 items-center justify-end relative"
+          >
             <button 
               onClick={toggleLanguage}
-              className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group"
+              className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group whitespace-nowrap"
             >
               <Globe className="w-3 h-3" /> {language.toUpperCase()}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
@@ -106,9 +116,9 @@ export default function Navbar() {
               as="a"
               href="#order"
               text={t.nav.orderNow}
-              className="scale-90"
+              className="scale-75 origin-right"
             />
-          </div>
+          </motion.div>
 
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-4 ml-auto">
