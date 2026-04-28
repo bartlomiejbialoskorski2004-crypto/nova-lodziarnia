@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlassButton } from './ui/glass-button';
+import { GlowButton } from './ui/glow-button';
 
 export default function SeasonalOffer() {
   const { t } = useLanguage();
@@ -77,13 +77,12 @@ export default function SeasonalOffer() {
              transition={{ duration: 0.6, delay: 0.3 }}
              className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto"
           >
-            <GlassButton 
+            <GlowButton 
               as="a"
               href="#order"
+              label={t.seasonal.cta}
               className="w-full sm:w-auto"
-            >
-              <span className="text-xs font-bold uppercase tracking-widest">{t.seasonal.cta}</span>
-            </GlassButton>
+            />
             <span className="text-[10px] font-bold uppercase tracking-widest text-nova-text/40">{t.seasonal.availableUntil}</span>
           </motion.div>
         </div>

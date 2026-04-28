@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GlassButton } from './ui/glass-button';
+import { GlowButton } from './ui/glow-button';
 import { Logo } from './ui/logo';
 
 export default function Navbar() {
@@ -57,23 +58,18 @@ export default function Navbar() {
 
           {/* Desktop Right Nav */}
           <div className="hidden md:flex items-center justify-end gap-8 relative">
-            <GlassButton 
-              size="sm"
+            <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold"
+              className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:text-nova-pink transition-all"
             >
-              <span className="flex items-center gap-2">
-                <Globe className="w-3 h-3" /> {language.toUpperCase()}
-              </span>
-            </GlassButton>
-            <GlassButton 
-              size="sm"
+              <Globe className="w-3 h-3" /> {language.toUpperCase()}
+            </button>
+            <GlowButton 
               as="a"
               href="#order"
-              className="text-[10px] font-bold uppercase tracking-[0.2em]"
-            >
-              {t.nav.orderNow}
-            </GlassButton>
+              label={t.nav.orderNow}
+              className="scale-90 md:scale-100"
+            />
           </div>
 
           {/* Mobile Toggle */}

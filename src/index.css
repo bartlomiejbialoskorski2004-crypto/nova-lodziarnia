@@ -58,6 +58,66 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+:root {
+  --background: #FFFDF5;
+  --foreground: #2D1E17;
+}
+
+.glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  background: #FCA5A5; /* Light Red */
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 rgba(252, 165, 165, 0.7);
+  z-index: 1;
+}
+
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #FCA5A5, #EF4444);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.4), 0 0 20px 5px rgba(252, 165, 165, 0.2);
+}
+
+.glow-btn:active, .glow-btn[data-state="clicked"] {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 5px 10px -3px rgba(239, 68, 68, 0.4);
+}
+
+.glow-btn-overlay {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  mix-blend-mode: overlay;
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(252, 165, 165, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(252, 165, 165, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(252, 165, 165, 0); }
+}
+
+.glow-btn {
+  animation: glow-pulse 2s infinite;
+}
+
 /* =============================================
    GlassButton Component Styles
    ============================================= */

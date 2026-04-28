@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GlassButton } from './ui/glass-button';
+import { GlowButton } from './ui/glow-button';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -48,16 +49,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <GlassButton 
-              size="lg"
+            <GlowButton 
               as={Link}
               to="/menu"
+              label={t.hero.cta1}
               className="w-full sm:w-auto"
-              contentClassName="flex items-center gap-3"
-            >
-              <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta1}</span>
-              <ArrowRight className="w-4 h-4" />
-            </GlassButton>
+            />
             
             <GlassButton 
               size="lg"
