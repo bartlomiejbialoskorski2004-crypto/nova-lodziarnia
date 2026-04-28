@@ -14,7 +14,7 @@ export default function FeaturedMenu() {
       desc: t.featured.gelatoDesc,
       img: 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1200',
       colSpan: 'md:col-span-2 md:row-span-2',
-      glowColor: 'pink' as const,
+      glowColor: 'green' as const,
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export default function FeaturedMenu() {
       desc: t.featured.wafflesDesc,
       img: 'https://images.pexels.com/photos/221068/pexels-photo-221068.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      glowColor: 'pink' as const,
+      glowColor: 'red' as const,
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ export default function FeaturedMenu() {
       desc: t.featured.coffeeDesc,
       img: 'https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      glowColor: 'pink' as const,
+      glowColor: 'orange' as const,
     }
   ];
 

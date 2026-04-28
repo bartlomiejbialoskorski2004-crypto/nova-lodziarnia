@@ -7,10 +7,10 @@
   
   --color-nova-bg: #FFFDF5;
   --color-nova-text: #2D1E17;
-  --color-nova-pink: #E11D48;
-  --color-nova-pistachio: #88C070;
-  --color-nova-caramel: #D48C45;
-  --color-nova-berry: #9B59B6;
+  --color-nova-pink: #EF4444;      /* Red */
+  --color-nova-pistachio: #22C55E; /* Green */
+  --color-nova-caramel: #FACC15;   /* Yellow */
+  --color-nova-berry: #EF4444;     /* Map berry to Red */
   --color-nova-cream: #FFFDF5;
 }
 
@@ -24,9 +24,9 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 10% 0%, rgba(225, 29, 72, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 100%, rgba(136, 192, 112, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(212, 140, 69, 0.08) 0%, transparent 40%);
+    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(250, 204, 21, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
 }
 
@@ -90,8 +90,8 @@ h1, h2, h3, h4, h5, h6 {
   --shiny-cta-bg: #2D1E17;
   --shiny-cta-bg-subtle: #3D2E27;
   --shiny-cta-fg: #ffffff;
-  --shiny-cta-highlight: #E11D48;
-  --shiny-cta-highlight-subtle: #FB7185;
+  --shiny-cta-highlight: #EF4444;
+  --shiny-cta-highlight-subtle: #FCA5A5;
   --animation: gradient-angle linear infinite;
   --duration: 3s;
   --shadow-size: 2px;
