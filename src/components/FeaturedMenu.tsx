@@ -21,7 +21,7 @@ export default function FeaturedMenu() {
       desc: t.featured.wafflesDesc,
       img: 'https://images.pexels.com/photos/221068/pexels-photo-221068.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      color: 'bg-nova-pink/20'
+      color: 'bg-nova-berry/20'
     },
     {
       id: 3,

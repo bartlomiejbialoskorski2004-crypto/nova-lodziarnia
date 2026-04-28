@@ -5,12 +5,13 @@
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --color-nova-bg: #FFF9F5;
-  --color-nova-text: #4A3933;
-  --color-nova-pink: #f472b6;
-  --color-nova-pistachio: #D4F1F4;
-  --color-nova-caramel: #FFDAB9;
-  --color-nova-cream: #FFF9F5;
+  --color-nova-bg: #FFFDF5;
+  --color-nova-text: #2D1E17;
+  --color-nova-pink: #E11D48;
+  --color-nova-pistachio: #88C070;
+  --color-nova-caramel: #D48C45;
+  --color-nova-berry: #9B59B6;
+  --color-nova-cream: #FFFDF5;
 }
 
 html {
@@ -23,10 +24,12 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 10% 0%, rgba(255, 209, 220, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 90% 100%, rgba(212, 241, 244, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(255, 218, 185, 0.4) 0%, transparent 40%);
+    radial-gradient(circle at 10% 0%, rgba(225, 29, 72, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(136, 192, 112, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(212, 140, 69, 0.1) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-attachment: fixed;
+  opacity: 0.98;
 }
 
 h1, h2, h3, h4, h5, h6 {
