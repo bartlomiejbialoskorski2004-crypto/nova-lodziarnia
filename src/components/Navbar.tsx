@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GlassButton } from './ui/glass-button';
+import { Logo } from './ui/logo';
 
 export default function Navbar() {
   const { t, language, setLanguage } = useLanguage();
@@ -50,8 +51,8 @@ export default function Navbar() {
           </div>
           
           {/* Logo */}
-          <Link to="/" className="text-xl md:text-2xl font-serif font-bold tracking-tighter absolute left-1/2 -translate-x-1/2 text-nova-text">
-            NOVA<span className="font-light italic text-nova-pink">LODZIARNIA</span>
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+            <Logo />
           </Link>
 
           {/* Desktop Right Nav */}
@@ -162,8 +163,8 @@ export default function Navbar() {
                     <Mail className="w-6 h-6" />
                   </GlassButton>
                   <div className="flex-1" />
-                  <Link to="/" className="text-xl font-serif font-bold tracking-tighter text-nova-text opacity-40">
-                    NOVA
+                  <Link to="/" className="opacity-40">
+                    <Logo className="scale-75 origin-right" />
                   </Link>
                 </motion.div>
               </div>
