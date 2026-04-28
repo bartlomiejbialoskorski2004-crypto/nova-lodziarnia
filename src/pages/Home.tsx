@@ -3,6 +3,7 @@ import Story from '../components/Story';
 import FeaturedMenu from '../components/FeaturedMenu';
 import ScrollJourney from '../components/ScrollJourney';
 import SeasonalOffer from '../components/SeasonalOffer';
+import Testimonials from '../components/Testimonials';
 import SocialProof from '../components/SocialProof';
 import Footer from '../components/Footer';
 
@@ -15,6 +16,7 @@ export default function Home() {
         <FeaturedMenu />
         <ScrollJourney />
         <SeasonalOffer />
+        <Testimonials />
         <SocialProof />
       </main>
       <Footer />
