@@ -17,7 +17,7 @@ export function FlowButton({
   return (
     <Component 
       className={cn(
-        "group relative flex items-center gap-1 overflow-hidden rounded-full border-[1.5px] border-nova-text/20 bg-transparent px-10 py-3.5 text-xs font-bold uppercase tracking-widest text-nova-text cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-transparent hover:text-white hover:rounded-xl active:scale-[0.95]",
+        "group relative flex items-center gap-1 overflow-hidden rounded-full border-[1.5px] border-nova-text/20 bg-transparent px-10 py-3.5 text-xs font-bold uppercase tracking-widest text-nova-text cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-transparent hover:text-white active:scale-[0.95]",
         className
       )}
       {...props}

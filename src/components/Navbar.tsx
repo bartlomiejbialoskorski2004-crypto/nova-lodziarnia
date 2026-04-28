@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FlowButton } from './ui/flow-button';
 import { Logo } from './ui/logo';
+import { cn } from '../lib/utils';
 
 export default function Navbar() {
   const { t, language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   const toggleLanguage = () => {
@@ -16,6 +18,15 @@ export default function Navbar() {
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
@@ -41,8 +52,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] glass-panel border-b border-white/40">
-        <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+      <nav 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out",
+          isScrolled 
+            ? "bg-white/40 backdrop-blur-md border-b border-white/20 py-4 shadow-sm" 
+            : "bg-transparent py-8 border-transparent"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           
           {/* Desktop Left Nav */}
           <div className="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60">
@@ -58,7 +76,7 @@ export default function Navbar() {
           
           {/* Logo */}
           <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-            <Logo />
+            <Logo className={cn("transition-transform duration-500", isScrolled ? "scale-90" : "scale-100")} />
           </Link>
 
           {/* Desktop Right Nav */}
