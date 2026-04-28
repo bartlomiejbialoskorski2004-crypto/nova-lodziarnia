@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { GlowCard } from './ui/spotlight-card';
 
 export default function FeaturedMenu() {
   const { t } = useLanguage();
@@ -13,7 +14,7 @@ export default function FeaturedMenu() {
       desc: t.featured.gelatoDesc,
       img: 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1200',
       colSpan: 'md:col-span-2 md:row-span-2',
-      color: 'bg-nova-pistachio/20'
+      glowColor: 'green' as const,
     },
     {
       id: 2,
@@ -21,7 +22,7 @@ export default function FeaturedMenu() {
       desc: t.featured.wafflesDesc,
       img: 'https://images.pexels.com/photos/221068/pexels-photo-221068.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      color: 'bg-nova-berry/20'
+      glowColor: 'purple' as const,
     },
     {
       id: 3,
@@ -29,7 +30,7 @@ export default function FeaturedMenu() {
       desc: t.featured.coffeeDesc,
       img: 'https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      color: 'bg-nova-caramel/20'
+      glowColor: 'orange' as const,
     }
   ];
 
@@ -56,7 +57,7 @@ export default function FeaturedMenu() {
           >
             <Link
               to="/menu"
-              className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-wider hover:text-nova-pink transition-colors"
+              className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-wider hover:text-nova-pink transition-colors cursor-pointer"
             >
               {t.featured.viewAll} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -71,26 +72,31 @@ export default function FeaturedMenu() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group relative rounded-[40px] glass-panel p-2 ${item.colSpan} cursor-pointer shadow-lg`}
+              className={`${item.colSpan} cursor-pointer`}
             >
-              <div className="w-full h-full rounded-[32px] overflow-hidden relative">
-                <div className={`absolute inset-0 mix-blend-multiply opacity-20 ${item.color} z-10 pointer-events-none`}></div>
-                <img 
-                  src={item.img} 
-                  alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1]"
-                  referrerPolicy="no-referrer"
-                />
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-nova-text/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
-  
-                <div className="absolute bottom-0 left-0 p-8 text-nova-bg z-20">
-                  <h3 className="text-2xl md:text-3xl font-serif mb-2 text-white drop-shadow-md">{item.title}</h3>
-                  <p className="font-light text-white/90 drop-shadow-md opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                    {item.desc}
-                  </p>
+              <GlowCard
+                glowColor={item.glowColor}
+                customSize
+                className="w-full h-full !rounded-[40px] !p-0 overflow-hidden !shadow-lg group"
+              >
+                <div className="w-full h-full rounded-[32px] overflow-hidden relative">
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1]"
+                    referrerPolicy="no-referrer"
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-nova-text/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
+    
+                  <div className="absolute bottom-0 left-0 p-8 text-nova-bg z-20">
+                    <h3 className="text-2xl md:text-3xl font-serif mb-2 text-white drop-shadow-md">{item.title}</h3>
+                    <p className="font-light text-white/90 drop-shadow-md opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
