@@ -1,141 +1,99 @@
 import { motion } from "motion/react";
+import { TestimonialsColumn, Testimonial } from "./ui/testimonials-columns-1";
 import { useLanguage } from "../contexts/LanguageContext";
-import { Quote } from "lucide-react";
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     text: "The Sicilian Pistachio is literally the best I've ever had outside of Italy. Absolute perfection.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop",
     name: "Maja Wiśniewska",
     role: "Local Foodie",
-    color: "bg-nova-pistachio/5",
-    accent: "text-nova-pistachio",
-    rotation: -2,
-    x: "-10%",
-    y: "0"
   },
   {
     text: "I come here every weekend for the waffles. The Wild Berry Dream is actually a dream.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
     name: "Jakub Kowalski",
     role: "Regular Guest",
-    color: "bg-nova-pink/5",
-    accent: "text-nova-pink",
-    rotation: 3,
-    x: "20%",
-    y: "40px"
   },
   {
     text: "The interior design is just as sweet as the gelato. A perfect spot for photos and dessert.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop",
     name: "Elena Rossi",
     role: "Interior Designer",
-    color: "bg-nova-caramel/5",
-    accent: "text-nova-caramel",
-    rotation: -4,
-    x: "-15%",
-    y: "80px"
   },
   {
     text: "Finally a place that takes specialty coffee seriously alongside their desserts. Love the V60 here.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
     name: "Adam Nowak",
     role: "Coffee Enthusiast",
-    color: "bg-nova-text/5",
-    accent: "text-nova-text",
-    rotation: 2,
-    x: "10%",
-    y: "120px"
-  }
+  },
+  {
+    text: "Tried the Rose Water seasonal scoop today. Incredible depth of flavor. Can't wait for next month!",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop",
+    name: "Zofia Lewandowska",
+    role: "Student",
+  },
+  {
+    text: "The riverside kiosk is my favorite stop during my evening runs. Fast service and great quality.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
+    name: "Tomasz Zieliński",
+    role: "Athlete",
+  },
+  {
+    text: "Nova is our go-to place for birthday treats. The Basque Cheesecake is legendary.",
+    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=400&auto=format&fit=crop",
+    name: "Kasia Mazur",
+    role: "Teacher",
+  },
+  {
+    text: "High quality ingredients and zero shortcuts. You can really taste the difference here.",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&auto=format&fit=crop",
+    name: "Piotr Wójcik",
+    role: "Chef",
+  },
+  {
+    text: "The staff is so friendly even when it's super busy. Always leave with a smile.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
+    name: "Anna Smyk",
+    role: "Artist",
+  },
 ];
+
+const firstColumn = testimonials.slice(0, 3);
+const secondColumn = testimonials.slice(3, 6);
+const thirdColumn = testimonials.slice(6, 9);
 
 export default function Testimonials() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-32 md:py-48 bg-transparent relative overflow-hidden z-10">
-      
-      {/* Background Large Text Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.02] whitespace-nowrap z-0">
-        <span className="text-[25vw] font-serif font-black italic tracking-tighter">VOICES</span>
-      </div>
+    <section className="py-24 bg-transparent relative overflow-hidden z-10">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 glass-pill rounded-full text-nova-text mb-6">
+            <span className="w-2 h-2 rounded-full bg-nova-pistachio animate-pulse" />
+            <span className="text-[10px] font-bold tracking-widest uppercase">Community</span>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        <div className="flex flex-col md:flex-row items-end justify-between mb-24 md:mb-40 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl"
-          >
-            <div className="inline-flex items-center gap-3 mb-6 text-nova-pink font-bold uppercase tracking-[0.4em] text-[10px]">
-              <span className="w-10 h-[1px] bg-nova-pink"></span>
-              {t.social.tag || "Community"}
-            </div>
-            <h2 className="text-6xl md:text-8xl font-serif leading-[0.9]">
-              Loved by <br/><span className="italic text-nova-pink font-light">Thousands.</span>
-            </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:text-right"
-          >
-            <p className="text-nova-text/60 text-lg max-w-xs font-light leading-relaxed">
-              Real stories from our artisan gelato community in the heart of the city.
-            </p>
-          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-serif leading-tight">
+            Loved by <br/><span className="italic text-nova-pink font-light">Thousands.</span>
+          </h2>
+          <p className="mt-8 text-lg text-nova-text/60 max-w-lg font-light">
+            Don't just take our word for it. Here's what the Nova community has to share about their favorite moments.
+          </p>
+        </motion.div>
+
+        <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[800px] overflow-hidden">
+          <TestimonialsColumn testimonials={firstColumn} duration={25} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={35} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={30} />
         </div>
-
-        {/* The "Postcard" Collage Layout */}
-        <div className="relative h-[800px] md:h-[600px] flex items-center justify-center">
-          {testimonials.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8, y: 50, rotate: 0 }}
-              whileInView={{ 
-                opacity: 1, 
-                scale: 1, 
-                y: item.y, 
-                x: item.x, 
-                rotate: item.rotation 
-              }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 1, 
-                delay: i * 0.15, 
-                ease: [0.16, 1, 0.3, 1] 
-              }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotate: 0, 
-                zIndex: 50,
-                transition: { duration: 0.4 } 
-              }}
-              className={`absolute w-full max-w-[320px] md:max-w-[380px] p-8 md:p-10 rounded-[40px] shadow-2xl ${item.color} border border-white/40 backdrop-blur-md cursor-pointer group`}
-            >
-              <div className="absolute top-6 right-8 opacity-20 group-hover:opacity-100 transition-opacity">
-                <Quote className={`w-8 h-8 ${item.accent}`} />
-              </div>
-              
-              <p className="text-xl md:text-2xl font-serif leading-relaxed text-nova-text mb-8">
-                "{item.text}"
-              </p>
-              
-              <div className="flex flex-col">
-                <span className="text-sm font-bold tracking-widest uppercase text-nova-text/40 mb-1">{item.role}</span>
-                <span className="text-lg font-serif italic text-nova-text">{item.name}</span>
-              </div>
-              
-              {/* Decorative "Stamp" */}
-              <div className="absolute bottom-6 right-8 w-10 h-10 rounded-full border-2 border-dashed border-nova-text/10 flex items-center justify-center text-[8px] font-bold text-nova-text/20 rotate-12 group-hover:rotate-0 transition-transform">
-                NOVA
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
       </div>
     </section>
   );
