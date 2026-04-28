@@ -14,11 +14,17 @@
   --color-nova-cream: #FFFDF5;
 }
 
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  position: relative;
+html, body, #root {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
   width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
   background-color: var(--color-nova-bg);
   color: var(--color-nova-text);
