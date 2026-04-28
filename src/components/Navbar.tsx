@@ -22,7 +22,7 @@ export default function Navbar() {
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -54,13 +54,13 @@ export default function Navbar() {
     <>
       <nav 
         className={cn(
-          "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out",
+          "fixed left-0 right-0 z-[100] transition-all duration-700 ease-[0.16,1,0.3,1]",
           isScrolled 
-            ? "bg-white/40 backdrop-blur-md border-b border-white/20 py-4 shadow-sm" 
-            : "bg-transparent py-8 border-transparent"
+            ? "top-6 mx-auto w-[95%] max-w-5xl rounded-full bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl py-3 px-8" 
+            : "top-0 w-full bg-transparent py-8 px-10 border-transparent"
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="flex items-center justify-between">
           
           {/* Desktop Left Nav */}
           <div className="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60">
@@ -75,8 +75,14 @@ export default function Navbar() {
           </div>
           
           {/* Logo */}
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-            <Logo className={cn("transition-transform duration-500", isScrolled ? "scale-90" : "scale-100")} />
+          <Link 
+            to="/" 
+            className={cn(
+              "transition-all duration-500", 
+              isScrolled ? "scale-75 translate-x-0" : "absolute left-1/2 -translate-x-1/2"
+            )}
+          >
+            <Logo />
           </Link>
 
           {/* Desktop Right Nav */}
@@ -92,7 +98,7 @@ export default function Navbar() {
               as="a"
               href="#order"
               text={t.nav.orderNow}
-              className="scale-90"
+              className="scale-75 origin-right"
             />
           </div>
 
