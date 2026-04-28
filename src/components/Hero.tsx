@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { LogoButton } from './ui/logo-button';
+import { GelatoButton } from './ui/gelato-button';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -47,7 +47,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-8 items-center w-full sm:w-auto"
           >
-            <LogoButton 
+            <GelatoButton 
               as={Link}
               to="/menu"
               text={t.hero.cta1}

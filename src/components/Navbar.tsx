@@ -3,7 +3,7 @@ import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { LogoButton } from './ui/logo-button';
+import { GelatoButton } from './ui/gelato-button';
 import { Logo } from './ui/logo';
 
 export default function Navbar() {
@@ -70,11 +70,11 @@ export default function Navbar() {
               <Globe className="w-3 h-3" /> {language.toUpperCase()}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
             </button>
-            <LogoButton 
+            <GelatoButton 
               as="a"
               href="#order"
               text={t.nav.orderNow}
-              className="scale-90"
+              className="scale-75"
             />
           </div>
 

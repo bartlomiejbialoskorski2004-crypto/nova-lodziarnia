@@ -1,7 +1,7 @@
 import { ArrowRight, MapPin, Mail, Instagram, Clock } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LocationMap } from './ui/expand-map';
-import { LogoButton } from './ui/logo-button';
+import { GelatoButton } from './ui/gelato-button';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -27,9 +27,9 @@ export default function Footer() {
                 className="flex-1 bg-white/50 backdrop-blur-sm border border-white/60 py-3.5 px-6 rounded-full focus:outline-none focus:bg-white/70 transition-colors shadow-inner text-sm"
                 required
               />
-              <LogoButton type="submit" className="!px-4 !py-3">
+              <GelatoButton type="submit" className="!px-4 !py-3">
                 <ArrowRight className="w-4 h-4" />
-              </LogoButton>
+              </GelatoButton>
             </form>
           </div>
 
