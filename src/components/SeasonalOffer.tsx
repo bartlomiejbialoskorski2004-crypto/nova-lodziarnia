@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GelatoButton } from './ui/gelato-button';
+import { FlowButton } from './ui/flow-button';
 
 export default function SeasonalOffer() {
   const { t } = useLanguage();
@@ -79,7 +79,7 @@ export default function SeasonalOffer() {
              transition={{ duration: 0.6, delay: 0.3 }}
              className="flex flex-col sm:flex-row items-center gap-8 w-full sm:w-auto"
           >
-            <GelatoButton 
+            <FlowButton 
               as="a"
               href="#order"
               text={t.seasonal.cta}
