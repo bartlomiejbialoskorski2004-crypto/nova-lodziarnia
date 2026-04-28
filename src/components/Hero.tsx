@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { ShinyButton } from './ui/shiny-button';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -26,7 +27,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight mb-6 text-[#2D2421]"
+            className="text-6xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight mb-6 text-nova-text"
           >
             {t.hero.title1} <br />
             <span className="italic font-light">{t.hero.title2}</span>
@@ -36,7 +37,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-xl text-[#5D4E48] mb-10 max-w-md font-light leading-relaxed"
+            className="text-lg md:text-xl text-nova-text/70 mb-10 max-w-md font-light leading-relaxed"
           >
             {t.hero.desc}
           </motion.p>
@@ -47,11 +48,15 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <Link to="/menu" className="group px-8 py-4 bg-[#4A3933] text-white rounded-full flex items-center justify-center gap-3 hover:bg-[#4A3933]/90 shadow-xl transition-all">
-              <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta1}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Link to="/menu">
+              <ShinyButton>
+                <span className="flex items-center gap-3">
+                  <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta1}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </ShinyButton>
             </Link>
-            <a href="#locations" className="glass-panel px-8 py-4 rounded-full flex items-center justify-center hover:bg-white/50 transition-all">
+            <a href="#locations" className="glass-panel px-8 py-4 rounded-full flex items-center justify-center hover:bg-white/50 transition-all cursor-pointer">
               <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta2}</span>
             </a>
           </motion.div>
@@ -73,7 +78,7 @@ export default function Hero() {
               referrerPolicy="no-referrer"
             />
             {/* Soft gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-nova-text/20 to-transparent mix-blend-overlay rounded-t-[200px] rounded-b-[40px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-nova-text/20 to-transparent mix-blend-overlay rounded-t-[200px] rounded-b-[40px]" />
           </div>
           
           {/* Floating accent image */}

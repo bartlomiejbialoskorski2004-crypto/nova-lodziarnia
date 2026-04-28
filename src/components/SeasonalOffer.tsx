@@ -29,7 +29,7 @@ export default function SeasonalOffer() {
             </div>
             
             {/* Floating Badge specific to frosted theme */}
-            <div className="absolute top-[40px] right-[20px] w-24 h-24 bg-white/80 backdrop-blur-md rounded-full flex flex-col items-center justify-center shadow-lg transform rotate-12 border-4 border-[#FFF9F5] z-20 text-[#4A3933]">
+            <div className="absolute top-[40px] right-[20px] w-24 h-24 bg-white/80 backdrop-blur-md rounded-full flex flex-col items-center justify-center shadow-lg transform rotate-12 border-4 border-nova-cream z-20 text-nova-text">
               <span className="text-[10px] font-bold uppercase leading-none">{t.footer.onlyAt}</span>
               <span className="text-xs font-serif font-black italic">Nova</span>
             </div>
@@ -64,7 +64,7 @@ export default function SeasonalOffer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-[#5D4E48] mb-8 max-w-md font-light"
+            className="text-lg text-nova-text/70 mb-8 max-w-md font-light"
           >
             {t.seasonal.desc}
           </motion.p>
@@ -76,7 +76,7 @@ export default function SeasonalOffer() {
              transition={{ duration: 0.6, delay: 0.3 }}
              className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
-            <a href="#order" className="w-full sm:w-auto px-8 py-4 bg-[#4A3933] text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-xl hover:bg-[#4A3933]/90 transition-all text-center">
+            <a href="#order" className="w-full sm:w-auto px-8 py-4 bg-nova-text text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-xl hover:bg-nova-text/90 transition-all text-center cursor-pointer">
               {t.seasonal.cta}
             </a>
             <span className="text-[10px] font-bold uppercase tracking-widest text-nova-text/60">{t.seasonal.availableUntil}</span>

@@ -82,7 +82,7 @@ export default function FeaturedMenu() {
                   referrerPolicy="no-referrer"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#4A3933]/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-nova-text/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
   
                 <div className="absolute bottom-0 left-0 p-8 text-nova-bg z-20">
                   <h3 className="text-2xl md:text-3xl font-serif mb-2 text-white drop-shadow-md">{item.title}</h3>

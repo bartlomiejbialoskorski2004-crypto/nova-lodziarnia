@@ -17,7 +17,8 @@ export default function ScrollJourney() {
 
   return (
     <section ref={containerRef} className="py-32 bg-transparent relative overflow-hidden z-10">
-      <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden select-none whitespace-nowrap font-serif italic text-[20vw] flex flex-col justify-center gap-20">
+      {/* Parallax text marquee */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none overflow-hidden select-none whitespace-nowrap font-serif italic text-[20vw] flex flex-col justify-center gap-20">
         <motion.div style={{ x: x1 }} className="text-nova-pistachio leading-none">Pistachio Strawberry Caramel</motion.div>
         <motion.div style={{ x: x2 }} className="text-nova-pink leading-none ml-[-50vw]">Handmade Daily With Love</motion.div>
       </div>
@@ -33,7 +34,7 @@ export default function ScrollJourney() {
           <motion.div 
             style={{ rotate }}
             className="w-full aspect-square bg-nova-pink/10 rounded-[80px] absolute -top-10 -left-10 z-0"
-          ></motion.div>
+          />
           <div className="relative z-10 glass-panel rounded-[60px] p-4 shadow-2xl overflow-hidden">
              <img 
                src="https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg?auto=compress&cs=tinysrgb&w=1200" 
@@ -52,7 +53,7 @@ export default function ScrollJourney() {
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-serif mb-8 leading-tight"
           >
-            The Art of <br/><span className="text-nova-berry italic font-light">Craftsmanship</span>
+            {t.story.title1} <br/><span className="text-nova-berry italic font-light">{t.story.title2}</span>
           </motion.h2>
           
           <motion.p 
@@ -62,7 +63,7 @@ export default function ScrollJourney() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-nova-text/80 font-light leading-relaxed mb-10"
           >
-            Every scoop is a masterpiece. We slow-churn our gelato using traditional Italian techniques combined with locally sourced, seasonal Polish ingredients. No shortcuts, just pure magic.
+            {t.story.p2}
           </motion.p>
 
           <motion.div
@@ -73,16 +74,21 @@ export default function ScrollJourney() {
             className="grid grid-cols-3 gap-6"
           >
             {[
-              { label: 'Fresh', color: 'bg-nova-pistachio' },
-              { label: 'Local', color: 'bg-nova-pink' },
-              { label: 'Craft', color: 'bg-nova-caramel' }
-            ].map((tag, i) => (
-              <div key={tag.label} className="flex flex-col items-center gap-3">
-                <div className={`w-full aspect-square rounded-2xl ${tag.color}/20 flex items-center justify-center`}>
-                  <div className={`w-3 h-3 rounded-full ${tag.color}`}></div>
+              { label: 'Fresh', color: 'nova-pistachio' },
+              { label: 'Local', color: 'nova-pink' },
+              { label: 'Craft', color: 'nova-caramel' }
+            ].map((tag) => (
+              <motion.div 
+                key={tag.label} 
+                className="flex flex-col items-center gap-3"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className={`w-full aspect-square rounded-2xl bg-${tag.color}/20 flex items-center justify-center cursor-pointer`}>
+                  <div className={`w-3 h-3 rounded-full bg-${tag.color}`} />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-widest">{tag.label}</span>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
