@@ -74,8 +74,8 @@ export default function Hero() {
           {/* Main big image */}
           <div className="absolute inset-0 glass-panel rounded-t-[200px] rounded-b-[40px] overflow-hidden shadow-2xl p-2 md:p-4">
             <img 
-              src="https://images.pexels.com/photos/205961/pexels-photo-205961.jpeg?auto=compress&cs=tinysrgb&w=2000" 
-              alt="People enjoying dessert at Nova Lodziarnia" 
+              src="/src/assets/hero-nova.jpg" 
+              alt="Nova Lodziarnia Interior" 
               className="w-full h-full object-cover rounded-t-[190px] rounded-b-[30px]"
               referrerPolicy="no-referrer"
             />
