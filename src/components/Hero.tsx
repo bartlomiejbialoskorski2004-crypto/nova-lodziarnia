@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { ShinyButton } from './ui/shiny-button';
+import { GlassButton } from './ui/glass-button';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -48,17 +48,25 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <Link to="/menu">
-              <ShinyButton>
-                <span className="flex items-center gap-3">
-                  <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta1}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </ShinyButton>
-            </Link>
-            <a href="#locations" className="glass-panel px-8 py-4 rounded-full flex items-center justify-center hover:bg-white/50 transition-all cursor-pointer">
+            <GlassButton 
+              size="lg"
+              as={Link}
+              to="/menu"
+              className="w-full sm:w-auto"
+              contentClassName="flex items-center gap-3"
+            >
+              <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta1}</span>
+              <ArrowRight className="w-4 h-4" />
+            </GlassButton>
+            
+            <GlassButton 
+              size="lg"
+              as="a"
+              href="#locations"
+              className="w-full sm:w-auto"
+            >
               <span className="text-xs font-bold uppercase tracking-widest">{t.hero.cta2}</span>
-            </a>
+            </GlassButton>
           </motion.div>
         </div>
 

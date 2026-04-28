@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { GlassButton } from './ui/glass-button';
 
 export default function Story() {
   const { t } = useLanguage();
@@ -76,9 +77,11 @@ export default function Story() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 inline-block border-b border-nova-text pb-1 text-sm uppercase tracking-widest font-semibold hover:text-nova-pink hover:border-nova-pink transition-colors cursor-pointer"
+            className="mt-10"
           >
-            {t.story.cta}
+            <GlassButton>
+              <span className="text-xs font-bold uppercase tracking-widest">{t.story.cta}</span>
+            </GlassButton>
           </motion.div>
         </div>
 

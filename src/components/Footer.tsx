@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin, Mail, Instagram, Clock } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LocationMap } from './ui/expand-map';
+import { GlassButton } from './ui/glass-button';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -19,16 +20,16 @@ export default function Footer() {
             <p className="text-nova-text/70 text-lg mb-8 max-w-sm">
               {t.footer.desc}
             </p>
-            <form className="relative max-w-sm">
+            <form className="relative max-w-sm flex items-center gap-2">
               <input 
                 type="email" 
                 placeholder={t.footer.emailPlaceholder}
-                className="w-full bg-white/50 backdrop-blur-sm border border-white/60 py-3 px-4 pr-12 rounded-full focus:outline-none focus:bg-white/70 transition-colors shadow-inner"
+                className="flex-1 bg-white/50 backdrop-blur-sm border border-white/60 py-3.5 px-6 rounded-full focus:outline-none focus:bg-white/70 transition-colors shadow-inner text-sm"
                 required
               />
-              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-nova-text rounded-full flex items-center justify-center text-white hover:bg-nova-pink transition-colors cursor-pointer">
+              <GlassButton type="submit" size="icon">
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </GlassButton>
             </form>
           </div>
 
@@ -63,8 +64,12 @@ export default function Footer() {
               <div className="mt-12 pt-12 border-t border-nova-text/10">
                  <h4 className="text-[10px] uppercase tracking-widest font-bold mb-4 text-nova-caramel">Follow Us</h4>
                  <div className="flex gap-4">
-                    <a href="#" className="p-2 glass-pill rounded-full hover:bg-nova-pink hover:text-white transition-all"><Instagram className="w-4 h-4" /></a>
-                    <a href="#" className="p-2 glass-pill rounded-full hover:bg-nova-pink hover:text-white transition-all"><Mail className="w-4 h-4" /></a>
+                    <GlassButton size="icon" as="a" href="#">
+                      <Instagram className="w-4 h-4" />
+                    </GlassButton>
+                    <GlassButton size="icon" as="a" href="#">
+                      <Mail className="w-4 h-4" />
+                    </GlassButton>
                  </div>
               </div>
             </div>

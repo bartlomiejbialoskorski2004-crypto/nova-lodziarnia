@@ -3,6 +3,7 @@ import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { GlassButton } from './ui/glass-button';
 
 export default function Navbar() {
   const { t, language, setLanguage } = useLanguage();
@@ -55,26 +56,34 @@ export default function Navbar() {
 
           {/* Desktop Right Nav */}
           <div className="hidden md:flex items-center justify-end gap-8 relative">
-            <button 
+            <GlassButton 
+              size="sm"
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:text-nova-pink transition-all"
+              className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold"
             >
-              <Globe className="w-3 h-3" /> {language.toUpperCase()}
-            </button>
-            <a href="#order" className="glass-pill px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-nova-pink hover:text-white transition-all uppercase tracking-[0.2em] shadow-sm border border-nova-text/10">
+              <span className="flex items-center gap-2">
+                <Globe className="w-3 h-3" /> {language.toUpperCase()}
+              </span>
+            </GlassButton>
+            <GlassButton 
+              size="sm"
+              as="a"
+              href="#order"
+              className="text-[10px] font-bold uppercase tracking-[0.2em]"
+            >
               {t.nav.orderNow}
-            </a>
+            </GlassButton>
           </div>
 
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-4 ml-auto">
-            <button 
+            <GlassButton 
+              size="icon"
               onClick={toggleMenu}
-              className="p-2 glass-panel rounded-xl text-nova-text"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            </GlassButton>
           </div>
         </div>
       </nav>
@@ -128,13 +137,16 @@ export default function Navbar() {
                   transition={{ delay: 0.6 }}
                   className="flex items-center justify-between py-6 border-t border-nova-text/10"
                 >
-                  <button 
+                  <GlassButton 
+                    size="sm"
                     onClick={toggleLanguage}
                     className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em]"
                   >
-                    <Globe className="w-5 h-5 text-nova-pink" />
-                    <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na Angielski'}</span>
-                  </button>
+                    <span className="flex items-center gap-3">
+                      <Globe className="w-5 h-5 text-nova-pink" />
+                      <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na Angielski'}</span>
+                    </span>
+                  </GlassButton>
                 </motion.div>
 
                 <motion.div 
@@ -143,12 +155,12 @@ export default function Navbar() {
                   transition={{ delay: 0.7 }}
                   className="flex items-center gap-6"
                 >
-                  <a href="#" className="p-4 glass-panel rounded-2xl text-nova-text hover:bg-nova-pink hover:text-white transition-all">
+                  <GlassButton size="icon" as="a" href="#">
                     <Instagram className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="p-4 glass-panel rounded-2xl text-nova-text hover:bg-nova-pink hover:text-white transition-all">
+                  </GlassButton>
+                  <GlassButton size="icon" as="a" href="#">
                     <Mail className="w-6 h-6" />
-                  </a>
+                  </GlassButton>
                   <div className="flex-1" />
                   <Link to="/" className="text-xl font-serif font-bold tracking-tighter text-nova-text opacity-40">
                     NOVA
