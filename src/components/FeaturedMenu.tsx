@@ -1,8 +1,7 @@
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { GlowCard } from './ui/spotlight-card';
 
 export default function FeaturedMenu() {
   const { t } = useLanguage();
@@ -14,7 +13,8 @@ export default function FeaturedMenu() {
       desc: t.featured.gelatoDesc,
       img: 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1200',
       colSpan: 'md:col-span-2 md:row-span-2',
-      glowColor: 'green' as const,
+      badge: 'Bestseller',
+      accent: 'bg-nova-pistachio'
     },
     {
       id: 2,
@@ -22,7 +22,8 @@ export default function FeaturedMenu() {
       desc: t.featured.wafflesDesc,
       img: 'https://images.pexels.com/photos/221068/pexels-photo-221068.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      glowColor: 'red' as const,
+      badge: 'Hot',
+      accent: 'bg-nova-pink'
     },
     {
       id: 3,
@@ -30,74 +31,93 @@ export default function FeaturedMenu() {
       desc: t.featured.coffeeDesc,
       img: 'https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      glowColor: 'orange' as const,
+      badge: 'Artisan',
+      accent: 'bg-nova-caramel'
     }
   ];
 
   return (
-    <section id="menu" className="py-24 md:py-32 bg-transparent relative z-10">
+    <section id="menu" className="py-24 md:py-40 bg-transparent relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-6xl font-serif leading-tight">
-              {t.featured.title1} <br/><span className="italic text-nova-pistachio">{t.featured.title2}</span>
-            </h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="inline-flex items-center gap-3 mb-6 text-nova-pink font-bold uppercase tracking-[0.4em] text-[10px]">
+              <span className="w-10 h-[1px] bg-nova-pink"></span>
+              {t.nav.menu}
+            </div>
+            <h2 className="text-5xl md:text-8xl font-serif leading-[0.9]">
+              {t.featured.title1} <br/><span className="italic text-nova-pink font-light">{t.featured.title2}</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Link
               to="/menu"
-              className="relative py-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-nova-text group"
+              className="group flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-nova-text bg-white/40 backdrop-blur-md border border-white/50 px-8 py-4 rounded-full hover:bg-nova-text hover:text-white transition-all duration-500"
             >
-              {t.featured.viewAll} <ArrowRight className="w-4 h-4" />
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+              {t.featured.viewAll} <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-[800px] md:h-[600px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-8 h-[900px] md:h-[700px]">
           {menuItems.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`${item.colSpan} cursor-pointer`}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={`${item.colSpan} relative group cursor-pointer`}
             >
-              <GlowCard
-                glowColor={item.glowColor}
-                customSize
-                className="w-full h-full !rounded-[40px] !p-0 overflow-hidden !shadow-lg group"
-              >
-                <div className="w-full h-full rounded-[32px] overflow-hidden relative">
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1]"
-                    referrerPolicy="no-referrer"
-                  />
+              <div className="w-full h-full rounded-[60px] overflow-hidden relative shadow-2xl">
+                {/* Main Image */}
+                <img 
+                  src={item.img} 
+                  alt={item.title} 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Overlay Gradient - Refined */}
+                <div className="absolute inset-0 bg-gradient-to-t from-nova-text/80 via-nova-text/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-white ${item.accent} shadow-lg`}>
+                      {item.badge}
+                    </span>
+                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-[-10px] group-hover:translate-y-0">
+                      <Star className="w-4 h-4 text-white fill-white" />
+                    </div>
+                  </div>
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-nova-text/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
-    
-                  <div className="absolute bottom-0 left-0 p-8 text-nova-bg z-20">
-                    <h3 className="text-2xl md:text-3xl font-serif mb-2 text-white drop-shadow-md">{item.title}</h3>
-                    <p className="font-light text-white/90 drop-shadow-md opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  <div>
+                    <h3 className="text-3xl md:text-5xl font-serif text-white mb-4 leading-none">{item.title}</h3>
+                    <p className="text-white/70 text-sm md:text-base font-light max-w-sm opacity-0 transform translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 leading-relaxed">
                       {item.desc}
                     </p>
+                    <div className="mt-8 flex items-center gap-2 text-nova-pink text-xs font-bold uppercase tracking-widest opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+                      Explore Flavors <ArrowRight className="w-3 h-3" />
+                    </div>
                   </div>
                 </div>
-              </GlowCard>
+
+                {/* Glass Border Highlight */}
+                <div className="absolute inset-0 border border-white/20 rounded-[60px] pointer-events-none group-hover:border-white/40 transition-colors duration-500" />
+              </div>
             </motion.div>
           ))}
         </div>
