@@ -15,7 +15,6 @@ export default function Navbar() {
   
   const { scrollY } = useScroll();
 
-  // Handle window resize for accurate mobile check
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -23,20 +22,21 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  // Transformation ranges - Hyper Smooth
-  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "88%" : "85%"]);
-  const navMaxWidth = useTransform(scrollY, [0, 100], [isMobile ? "400px" : "1280px", isMobile ? "340px" : "900px"]);
-  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 16 : 20]);
+  // Transformation ranges
+  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
+  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 12 : 20]);
   const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
-  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 12 : 24, isMobile ? 8 : 10]);
-  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 20 : 48, isMobile ? 16 : 32]);
+  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
+  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
   
   const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
   const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
   
-  // Inward movement - gap and scale
+  // Logo movement and scale
+  // For mobile: Left spacer width goes from 1fr to 0px
+  const mobileSpacerFlex = useTransform(scrollY, [0, 100], [1, 0]);
+  const logoScale = useTransform(scrollY, [0, 100], [isMobile ? 1.2 : 1, isMobile ? 0.7 : 0.75]);
   const sideGap = useTransform(scrollY, [0, 100], [40, 24]);
-  const logoScale = useTransform(scrollY, [0, 100], [1, isMobile ? 0.65 : 0.75]);
   const navShadow = useTransform(scrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
@@ -71,7 +71,7 @@ export default function Navbar() {
         <motion.nav 
           style={{
             width: navWidth,
-            maxWidth: isMobile ? undefined : navMaxWidth,
+            maxWidth: isMobile ? "400px" : "1100px",
             top: navTop,
             borderRadius: navRadius,
             backgroundColor: navBg,
@@ -86,61 +86,64 @@ export default function Navbar() {
           }}
           className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-all duration-300"
         >
-          {/* Desktop Left Nav */}
-          <motion.div 
-            style={{ gap: sideGap }}
-            className="hidden md:flex flex-1 items-center text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60"
-          >
-            <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
-              {t.nav.menu}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
-            </Link>
-            <a href="/#story" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
-              {t.nav.story}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
-            </a>
-          </motion.div>
+          {/* Left Spacer (Mobile) / Nav Links (Desktop) */}
+          {isMobile ? (
+            <motion.div style={{ flex: mobileSpacerFlex }} className="md:hidden" />
+          ) : (
+            <motion.div 
+              style={{ gap: sideGap }}
+              className="hidden md:flex flex-1 items-center text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60"
+            >
+              <Link to="/menu" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
+                {t.nav.menu}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+              </Link>
+              <a href="/#story" className="relative py-1 hover:text-nova-text transition-colors group whitespace-nowrap">
+                {t.nav.story}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+              </a>
+            </motion.div>
+          )}
           
-          {/* Mobile Spacer - to keep logo centered */}
-          <div className="flex md:hidden flex-1" />
-
           {/* Logo */}
-          <Link to="/" className="flex flex-shrink-0 items-center justify-center px-4 md:px-8">
+          <Link to="/" className="flex flex-shrink-0 items-center justify-center">
             <motion.div style={{ scale: logoScale }}>
               <Logo />
             </motion.div>
           </Link>
 
-          {/* Desktop Right Nav */}
-          <motion.div 
-            style={{ gap: sideGap }}
-            className="hidden md:flex flex-1 items-center justify-end relative"
-          >
-            <button 
-              onClick={toggleLanguage}
-              className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group whitespace-nowrap"
+          {/* Right Spacer (Mobile) / Nav Buttons (Desktop) */}
+          {isMobile ? (
+            <div className="flex md:hidden items-center justify-end flex-1">
+              <button 
+                onClick={toggleMenu}
+                className="p-2 text-nova-text hover:text-nova-pink transition-colors"
+                aria-label="Toggle Menu"
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          ) : (
+            <motion.div 
+              style={{ gap: sideGap }}
+              className="hidden md:flex flex-1 items-center justify-end relative"
             >
-              <Globe className="w-3 h-3" /> {language.toUpperCase()}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
-            </button>
-            <FlowButton 
-              as="a"
-              href="#order"
-              text={t.nav.orderNow}
-              className="scale-75 origin-right"
-            />
-          </motion.div>
+              <button 
+                onClick={toggleLanguage}
+                className="relative py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-nova-text/60 hover:text-nova-text transition-all group whitespace-nowrap"
+              >
+                <Globe className="w-3 h-3" /> {language.toUpperCase()}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
+              </button>
+              <FlowButton 
+                as="a"
+                href="#order"
+                text={t.nav.orderNow}
+                className="scale-75 origin-right"
+              />
+            </motion.div>
+          )}
 
-          {/* Mobile Toggle */}
-          <div className="flex md:hidden items-center justify-end flex-1">
-            <button 
-              onClick={toggleMenu}
-              className="p-2 text-nova-text hover:text-nova-pink transition-colors"
-              aria-label="Toggle Menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
         </motion.nav>
       </div>
 
