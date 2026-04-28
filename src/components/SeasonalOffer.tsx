@@ -44,7 +44,7 @@ export default function SeasonalOffer() {
             transition={{ duration: 0.6 }}
             className="px-4 py-1.5 glass-pill rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 flex items-center gap-2"
           >
-            <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+            <span className="w-2 h-2 bg-nova-pink rounded-full"></span>
             {t.seasonal.badge}
           </motion.div>
 
@@ -53,7 +53,7 @@ export default function SeasonalOffer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-serif mb-6 leading-[0.9]"
+            className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 leading-[0.9]"
           >
             {t.seasonal.title1} <br />
             <span className="italic font-light">{t.seasonal.title2}</span>

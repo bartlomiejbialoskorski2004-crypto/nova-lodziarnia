@@ -27,7 +27,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight mb-6 text-nova-text"
+            className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight mb-6 text-nova-text"
           >
             {t.hero.title1} <br />
             <span className="italic font-light">{t.hero.title2}</span>
