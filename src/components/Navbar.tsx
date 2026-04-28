@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform, useBreakpointValue } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FlowButton } from './ui/flow-button';
 import { Logo } from './ui/logo';
@@ -10,25 +10,33 @@ import { cn } from '../lib/utils';
 export default function Navbar() {
   const { t, language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   
   const { scrollY } = useScroll();
+
+  // Handle window resize for accurate mobile check
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
-  // Use responsive values for the pill effect
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  
-  // Refined transformations for the "Pill" effect - Responsive
-  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
-  const navMaxWidth = useTransform(scrollY, [0, 100], [isMobile ? "100%" : "1280px", isMobile ? "100%" : "900px"]);
-  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 12 : 20]);
+  // Transformation ranges - Hyper Smooth
+  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "88%" : "85%"]);
+  const navMaxWidth = useTransform(scrollY, [0, 100], [isMobile ? "400px" : "1280px", isMobile ? "340px" : "900px"]);
+  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 16 : 20]);
   const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
-  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
-  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
+  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 12 : 24, isMobile ? 8 : 10]);
+  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 20 : 48, isMobile ? 16 : 32]);
   
-  const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.75)"]);
-  const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.4)"]);
+  const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
+  const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
+  
+  // Inward movement - gap and scale
   const sideGap = useTransform(scrollY, [0, 100], [40, 24]);
-  const logoScale = useTransform(scrollY, [0, 100], [1, isMobile ? 0.7 : 0.75]);
+  const logoScale = useTransform(scrollY, [0, 100], [1, isMobile ? 0.65 : 0.75]);
   const navShadow = useTransform(scrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
@@ -59,11 +67,11 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4 md:px-0">
+      <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
         <motion.nav 
           style={{
             width: navWidth,
-            maxWidth: navMaxWidth,
+            maxWidth: isMobile ? undefined : navMaxWidth,
             top: navTop,
             borderRadius: navRadius,
             backgroundColor: navBg,
@@ -76,7 +84,7 @@ export default function Navbar() {
             borderWidth: 1,
             backdropFilter: "blur(12px)",
           }}
-          className="pointer-events-auto flex items-center justify-between relative overflow-hidden"
+          className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-all duration-300"
         >
           {/* Desktop Left Nav */}
           <motion.div 
@@ -93,6 +101,9 @@ export default function Navbar() {
             </a>
           </motion.div>
           
+          {/* Mobile Spacer - to keep logo centered */}
+          <div className="flex md:hidden flex-1" />
+
           {/* Logo */}
           <Link to="/" className="flex flex-shrink-0 items-center justify-center px-4 md:px-8">
             <motion.div style={{ scale: logoScale }}>
@@ -144,22 +155,16 @@ export default function Navbar() {
             className="fixed inset-0 z-[110] bg-nova-bg flex flex-col pt-32 px-10 pb-12 md:hidden overflow-y-auto"
           >
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-            
             <div className="flex flex-col h-full justify-between relative z-10 min-h-[500px]">
               <div className="flex flex-col gap-8">
                 {menuLinks.map((link, i) => (
                   <motion.div key={link.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 + 0.2 }}>
-                    <a 
-                      href={link.href} 
-                      className="text-4xl xs:text-5xl font-serif font-bold text-nova-text flex items-center group flex-wrap" 
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <a href={link.href} className="text-4xl xs:text-5xl font-serif font-bold text-nova-text flex items-center group flex-wrap" onClick={() => setIsOpen(false)}>
                       {link.name} <ArrowRight className="w-6 h-6 xs:w-8 xs:h-8 ml-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-nova-pink" />
                     </a>
                   </motion.div>
                 ))}
               </div>
-
               <div className="flex flex-col gap-8 mt-12">
                 <div className="flex items-center justify-between py-6 border-t border-nova-text/10">
                   <button onClick={toggleLanguage} className="relative py-1 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group">
