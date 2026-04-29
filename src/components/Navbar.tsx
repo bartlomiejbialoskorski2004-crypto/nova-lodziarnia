@@ -40,6 +40,7 @@ export default function Navbar() {
   const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.3 : 1.1, isMobile ? 0.75 : 0.8]);
   const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
   const navShadow = useTransform(smoothScrollY, [30, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -10px rgba(0,0,0,0.1)"]);
+  const navBlur = useTransform(smoothScrollY, [20, 100], ["blur(0px)", "blur(12px)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
@@ -84,7 +85,7 @@ export default function Navbar() {
             paddingRight: navPaddingX,
             boxShadow: navShadow,
             borderWidth: 1,
-            backdropFilter: "blur(12px)",
+            backdropFilter: navBlur,
           }}
           className="pointer-events-auto flex items-center justify-between relative overflow-hidden"
         >
