@@ -7,10 +7,10 @@
   
   --color-nova-bg: #FFFDF5;
   --color-nova-text: #2D1E17;
-  --color-nova-pink: #EF4444;      /* Red */
+  --color-nova-pink: #FFB7C5;      /* Light Pink */
   --color-nova-pistachio: #22C55E; /* Green */
   --color-nova-caramel: #FACC15;   /* Yellow */
-  --color-nova-berry: #EF4444;     /* Map berry to Red */
+  --color-nova-berry: #FFB7C5;     /* Light Pink */
   --color-nova-cream: #FFFDF5;
 }
 
@@ -33,7 +33,7 @@ html {
 body {
   font-family: var(--font-sans);
   background-image: 
-    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 10% 0%, rgba(255, 183, 197, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 90% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 80% 30%, rgba(250, 204, 21, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: white;
-  background: #FCA5A5; /* Light Red */
+  background: #FFE4E8; /* Light Pink */
   border-radius: 9999px;
   border: none;
   cursor: pointer;
@@ -97,19 +97,19 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, #FCA5A5, #EF4444);
+  background: linear-gradient(45deg, #FFE4E8, #FFB7C5);
   z-index: -1;
   transition: opacity 0.3s ease;
 }
 
 .glow-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.4), 0 0 20px 5px rgba(252, 165, 165, 0.2);
+  box-shadow: 0 10px 20px -5px rgba(255, 183, 197, 0.4), 0 0 20px 5px rgba(255, 228, 232, 0.2);
 }
 
 .glow-btn:active, .glow-btn[data-state="clicked"] {
   transform: translateY(1px) scale(0.98);
-  box-shadow: 0 5px 10px -3px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 5px 10px -3px rgba(255, 183, 197, 0.4);
 }
 
 .glow-btn-overlay {
@@ -118,9 +118,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glow-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(252, 165, 165, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(252, 165, 165, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(252, 165, 165, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(255, 228, 232, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 228, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 228, 232, 0); }
 }
 
 .glow-btn {
@@ -199,8 +199,8 @@ h1, h2, h3, h4, h5, h6 {
   --shiny-cta-bg: #2D1E17;
   --shiny-cta-bg-subtle: #3D2E27;
   --shiny-cta-fg: #ffffff;
-  --shiny-cta-highlight: #EF4444;
-  --shiny-cta-highlight-subtle: #FCA5A5;
+  --shiny-cta-highlight: #FFB7C5;
+  --shiny-cta-highlight-subtle: #FFE4E8;
   --animation: gradient-angle linear infinite;
   --duration: 3s;
   --shadow-size: 2px;
