@@ -4,7 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { FlowButton } from './ui/flow-button';
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="relative min-h-[90vh] flex items-center pt-32 md:pt-40 overflow-hidden max-w-[100vw]">
@@ -92,7 +92,7 @@ export default function Hero() {
           >
             <img 
               src="https://images.pexels.com/photos/3780469/pexels-photo-3780469.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Artisan Ice Cream Cone" 
+              alt={language === 'en' ? 'Artisan Ice Cream Cone' : 'Rzemieślniczy rożek lodowy'} 
               className="w-full h-full object-cover rounded-[90px]"
               referrerPolicy="no-referrer"
             />

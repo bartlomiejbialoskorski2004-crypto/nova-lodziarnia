@@ -33,7 +33,16 @@ export const translations = {
       waffles: 'Belgian Waffles',
       wafflesDesc: 'Crispy outside, fluffy inside.',
       coffee: 'Specialty Coffee',
-      coffeeDesc: 'Ethically sourced, perfectly roasted.'
+      coffeeDesc: 'Ethically sourced, perfectly roasted.',
+      badges: {
+        artisan: 'Artisan Choice',
+        baked: 'Freshly Baked',
+        roast: 'Specialty Roast'
+      },
+      labels: {
+        crafted: 'Crafted daily with seasonal ingredients from local farms.',
+        details: 'Details'
+      }
     },
     seasonal: {
       badge: 'Spring Exclusive',
@@ -58,7 +67,20 @@ export const translations = {
       kiosk: 'Krakowska Street',
       hours: 'Hours',
       rights: '© Nova Lodziarnia.',
-      onlyAt: 'Only at'
+      onlyAt: 'Only at',
+      labels: {
+        comingSoon: 'Coming Soon',
+        cracowPoland: 'Cracow, Poland',
+        privacy: 'Privacy',
+        terms: 'Terms',
+        allergenInfo: 'Allergen Info'
+      }
+    },
+    testimonials: {
+      badge: 'Community',
+      title1: 'Loved by',
+      title2: 'Thousands.',
+      desc: "Don't just take our word for it. Here's what the Nova community has to share about their favorite moments."
     },
     fullMenu: {
       title: 'Our Menu',
@@ -117,7 +139,16 @@ export const translations = {
       waffles: 'Belgijskie Gofry',
       wafflesDesc: 'Chrupiące na zewnątrz, puszyste w środku.',
       coffee: 'Kawa Specialty',
-      coffeeDesc: 'Ze zrównoważonych upraw, idealnie palona.'
+      coffeeDesc: 'Ze zrównoważonych upraw, idealnie palona.',
+      badges: {
+        artisan: 'Wybór Rzemieślnika',
+        baked: 'Świeżo Wypiekane',
+        roast: 'Kawa Specialty'
+      },
+      labels: {
+        crafted: 'Tworzone codziennie z sezonowych składników od lokalnych rolników.',
+        details: 'Szczegóły'
+      }
     },
     seasonal: {
       badge: 'Wiosenny Klasyk',
@@ -142,7 +173,20 @@ export const translations = {
       kiosk: 'ul. Krakowska',
       hours: 'Zawsze Otwarte',
       rights: '© Nova Lodziarnia. Wszelkie Prawa Zastrzeżone.',
-      onlyAt: 'Tylko w'
+      onlyAt: 'Tylko w',
+      labels: {
+        comingSoon: 'Wkrótce Otwarcie',
+        cracowPoland: 'Kraków, Polska',
+        privacy: 'Prywatność',
+        terms: 'Regulamin',
+        allergenInfo: 'Alergeny'
+      }
+    },
+    testimonials: {
+      badge: 'Społeczność',
+      title1: 'Uwielbiane przez',
+      title2: 'Tysiące.',
+      desc: 'Nie wierz nam na słowo. Zobacz, co o swoich ulubionych chwilach mówi społeczność Nova.'
     },
     fullMenu: {
       title: 'Nasze Menu',

@@ -19,7 +19,7 @@ export default function FeaturedMenu() {
       desc: t.featured.gelatoDesc,
       img: 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1200',
       colSpan: 'md:col-span-2 md:row-span-2',
-      badge: 'Artisan Choice',
+      badge: t.featured.badges.artisan,
       accent: 'bg-nova-pistachio',
       parallax: -40
     },
@@ -29,7 +29,7 @@ export default function FeaturedMenu() {
       desc: t.featured.wafflesDesc,
       img: 'https://images.pexels.com/photos/221068/pexels-photo-221068.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      badge: 'Freshly Baked',
+      badge: t.featured.badges.baked,
       accent: 'bg-nova-pink',
       parallax: 20
     },
@@ -39,7 +39,7 @@ export default function FeaturedMenu() {
       desc: t.featured.coffeeDesc,
       img: 'https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800',
       colSpan: 'md:col-span-1 md:row-span-1',
-      badge: 'Specialty Roast',
+      badge: t.featured.badges.roast,
       accent: 'bg-nova-caramel',
       parallax: 60
     }
@@ -86,13 +86,13 @@ export default function FeaturedMenu() {
             className="flex flex-col items-center md:items-end gap-6"
           >
             <p className="text-nova-text/50 text-xs font-bold uppercase tracking-widest text-center md:text-right max-w-[200px]">
-              Crafted daily with seasonal ingredients from local farms.
+              {t.featured.labels.crafted}
             </p>
             <Link
               to="/menu"
               className="group relative flex items-center justify-center w-24 h-24 rounded-full bg-nova-text text-white hover:bg-nova-pink transition-all duration-700"
             >
-              <span className="absolute text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity -top-8 text-nova-text">View Menu</span>
+              <span className="absolute text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity -top-8 text-nova-text">{t.nav.menu}</span>
               <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
             </Link>
           </motion.div>
@@ -155,7 +155,7 @@ export default function FeaturedMenu() {
                       
                       <div className="mt-10 flex items-center gap-4 text-white text-[10px] font-bold uppercase tracking-[0.4em] opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300">
                         <span className="w-12 h-[1px] bg-white/40"></span>
-                        Details
+                        {t.featured.labels.details}
                       </div>
                     </div>
 

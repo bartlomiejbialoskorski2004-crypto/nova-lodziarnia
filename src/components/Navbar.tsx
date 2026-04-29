@@ -118,7 +118,7 @@ export default function Navbar() {
               <button 
                 onClick={toggleMenu}
                 className="p-2 text-nova-text hover:text-nova-pink transition-colors"
-                aria-label="Toggle Menu"
+                aria-label={language === 'en' ? 'Toggle Menu' : 'Otwórz Menu'}
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -172,7 +172,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between py-6 border-t border-nova-text/10">
                   <button onClick={toggleLanguage} className="relative py-1 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group">
                     <Globe className="w-5 h-5 text-nova-pink" />
-                    <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na Angielski'}</span>
+                    <span>{language === 'en' ? 'Switch to Polish' : 'Zmień na angielski'}</span>
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-nova-pink transition-all duration-300 group-hover:w-full" />
                   </button>
                 </div>

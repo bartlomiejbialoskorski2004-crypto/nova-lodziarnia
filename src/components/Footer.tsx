@@ -106,11 +106,11 @@ export default function Footer() {
                   <div className="space-y-4">
                     <div className="group/loc cursor-pointer">
                       <p className="text-white font-serif text-lg group-hover:text-nova-pink transition-colors">{t.footer.downtown}</p>
-                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">Cracow, Poland</p>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">{t.footer.labels.cracowPoland}</p>
                     </div>
                     <div className="group/loc cursor-pointer">
                       <p className="text-white font-serif text-lg group-hover:text-nova-pink transition-colors">Nova Riverside</p>
-                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">Coming Soon</p>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">{t.footer.labels.comingSoon}</p>
                     </div>
                   </div>
                 </div>
@@ -142,9 +142,9 @@ export default function Footer() {
               {t.footer.rights.replace('{year}', new Date().getFullYear().toString())}
             </div>
             <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-white/40">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">Allergen Info</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.labels.privacy}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.labels.terms}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.labels.allergenInfo}</a>
             </div>
           </div>
         </div>

@@ -68,7 +68,7 @@ export default function FullMenu() {
             >
               <h2 className="text-3xl font-serif text-[#2D2421] mb-8 relative inline-block">
                 {cat.name}
-                <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-pink-400/50"></div>
+                <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-nova-pink/50"></div>
               </h2>
               
               <ul className="space-y-6">

@@ -78,14 +78,14 @@ export default function Testimonials() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 glass-pill rounded-full text-nova-text mb-6">
             <span className="w-2 h-2 rounded-full bg-nova-pistachio animate-pulse" />
-            <span className="text-[10px] font-bold tracking-widest uppercase">Community</span>
+            <span className="text-[10px] font-bold tracking-widest uppercase">{t.testimonials.badge}</span>
           </div>
 
           <h2 className="text-5xl md:text-7xl font-serif leading-tight">
-            Loved by <br/><span className="italic text-nova-pink font-light">Thousands.</span>
+            {t.testimonials.title1} <br/><span className="italic text-nova-pink font-light">{t.testimonials.title2}</span>
           </h2>
           <p className="mt-8 text-lg text-nova-text/60 max-w-lg font-light">
-            Don't just take our word for it. Here's what the Nova community has to share about their favorite moments.
+            {t.testimonials.desc}
           </p>
         </motion.div>
 
