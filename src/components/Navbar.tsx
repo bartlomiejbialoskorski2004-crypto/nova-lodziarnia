@@ -14,7 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   
   const { scrollY } = useScroll();
-  const smoothScrollY = useSpring(scrollY, { stiffness: 70, damping: 24, restDelta: 0.001 });
+  const smoothScrollY = useSpring(scrollY, { stiffness: 200, damping: 30, restDelta: 0.01 });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
