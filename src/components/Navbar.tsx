@@ -158,6 +158,18 @@ export default function Navbar() {
             className="fixed inset-0 z-[110] bg-nova-bg flex flex-col pt-32 px-10 pb-12 md:hidden overflow-y-auto"
           >
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            
+            {/* Close Button Overlay */}
+            <div className="absolute top-8 right-8 z-20">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-nova-text hover:text-nova-pink transition-colors"
+                aria-label={language === 'en' ? 'Close Menu' : 'Zamknij Menu'}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
             <div className="flex flex-col h-full justify-between relative z-10 min-h-[500px]">
               <div className="flex flex-col gap-8">
                 {menuLinks.map((link, i) => (
