@@ -23,15 +23,15 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  // Transformation ranges
-  const navWidth = useTransform(smoothScrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
-  const navTop = useTransform(smoothScrollY, [0, 100], [0, isMobile ? 12 : 20]);
-  const navRadius = useTransform(smoothScrollY, [0, 100], [0, 100]);
-  const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
-  const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
+  // Transformation ranges - Always a pill, never a flat rectangle
+  const navWidth = useTransform(smoothScrollY, [0, 100], [isMobile ? "94%" : "96%", isMobile ? "92%" : "85%"]);
+  const navTop = useTransform(smoothScrollY, [0, 100], [isMobile ? 12 : 16, isMobile ? 12 : 24]);
+  const navRadius = 100; // Constant pill shape
+  const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 16 : 20, isMobile ? 10 : 10]);
+  const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 24 : 40, isMobile ? 16 : 32]);
   
-  const navBg = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
-  const navBorder = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
+  const navBg = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.4)", "rgba(255, 255, 255, 0.85)"]);
+  const navBorder = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]);
   
   // Logo movement and scale
   const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 24px)" : "0px", "0px"]);
