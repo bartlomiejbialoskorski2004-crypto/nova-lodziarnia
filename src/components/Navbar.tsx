@@ -14,7 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   
   const { scrollY } = useScroll();
-  const smoothScrollY = useSpring(scrollY, { stiffness: 100, damping: 25, restDelta: 0.001 });
+  const smoothScrollY = useSpring(scrollY, { stiffness: 70, damping: 24, restDelta: 0.001 });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -30,9 +30,9 @@ export default function Navbar() {
   const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 20 : 32, isMobile ? 10 : 12]);
   const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 40 : 80, isMobile ? 16 : 32]);
   
-  // Background and border start completely transparent
-  const navBg = useTransform(smoothScrollY, [0, 80], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]);
-  const navBorder = useTransform(smoothScrollY, [0, 80], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
+  // Background and border start completely transparent - more gradual transition
+  const navBg = useTransform(smoothScrollY, [0, 120], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]);
+  const navBorder = useTransform(smoothScrollY, [0, 120], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
   
   // Logo movement: starts centered on mobile, then glides left
   // Scale starts larger, then shrinks into the pill
