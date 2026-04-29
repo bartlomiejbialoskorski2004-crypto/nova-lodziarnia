@@ -3,7 +3,7 @@ import { Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const igImages = [
-  'https://images.unsplash.com/photo-1501443762994-82bd5dabb892?auto=format&fit=crop&q=80&w=800',
+  '/ig-1.png',
   'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=800',
   'https://images.unsplash.com/photo-1534706936160-d5ee67737249?auto=format&fit=crop&q=80&w=800',
   'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800'
