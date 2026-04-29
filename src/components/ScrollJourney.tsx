@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Leaf, MapPin, Sparkles } from 'lucide-react';
 
 export default function ScrollJourney() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -15,12 +16,33 @@ export default function ScrollJourney() {
   const x2 = useTransform(scrollYProgress, [0, 1], [-100, 100]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
+  const marquee1 = language === 'en' ? 'Pistachio Strawberry Caramel' : 'Pistacja Truskawka Karmel';
+  const marquee2 = language === 'en' ? 'Handmade Daily With Love' : 'Tworzone Codziennie z Miłością';
+
+  const tags = [
+    { 
+      label: language === 'en' ? 'Fresh' : 'Świeże', 
+      color: 'nova-pistachio', 
+      icon: Leaf 
+    },
+    { 
+      label: language === 'en' ? 'Local' : 'Lokalne', 
+      color: 'nova-pink', 
+      icon: MapPin 
+    },
+    { 
+      label: language === 'en' ? 'Craft' : 'Ręczna Robota', 
+      color: 'nova-caramel', 
+      icon: Sparkles 
+    }
+  ];
+
   return (
     <section ref={containerRef} className="py-32 bg-transparent relative overflow-hidden z-10">
       {/* Parallax text marquee */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none overflow-hidden select-none whitespace-nowrap font-serif italic text-[20vw] flex flex-col justify-center gap-20">
-        <motion.div style={{ x: x1 }} className="text-nova-pistachio leading-none">Pistachio Strawberry Caramel</motion.div>
-        <motion.div style={{ x: x2 }} className="text-nova-pink leading-none ml-[-50vw]">Handmade Daily With Love</motion.div>
+        <motion.div style={{ x: x1 }} className="text-nova-pistachio leading-none">{marquee1}</motion.div>
+        <motion.div style={{ x: x2 }} className="text-nova-pink leading-none ml-[-50vw]">{marquee2}</motion.div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center relative z-20">
@@ -73,21 +95,17 @@ export default function ScrollJourney() {
             transition={{ duration: 1, delay: 0.4 }}
             className="grid grid-cols-3 gap-6"
           >
-            {[
-              { label: 'Fresh', color: 'nova-pistachio' },
-              { label: 'Local', color: 'nova-pink' },
-              { label: 'Craft', color: 'nova-caramel' }
-            ].map((tag) => (
+            {tags.map((tag) => (
               <motion.div 
                 key={tag.label} 
                 className="flex flex-col items-center gap-3"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className={`w-full aspect-square rounded-2xl bg-${tag.color}/20 flex items-center justify-center cursor-pointer`}>
-                  <div className={`w-3 h-3 rounded-full bg-${tag.color}`} />
+                <div className={`w-full aspect-square rounded-2xl bg-white/40 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer shadow-sm group-hover:shadow-md transition-shadow`}>
+                  <tag.icon className={`w-6 h-6 text-${tag.color}`} />
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-widest">{tag.label}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-center">{tag.label}</span>
               </motion.div>
             ))}
           </motion.div>

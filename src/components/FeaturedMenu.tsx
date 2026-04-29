@@ -127,14 +127,8 @@ export default function FeaturedMenu() {
                     {/* Elegant Shadow Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-nova-text/90 via-nova-text/20 to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
                     
-                    {/* Interactive Badges */}
-                    <div className="absolute top-10 left-10 right-10 flex justify-between items-start z-30">
-                      <motion.span 
-                        whileHover={{ scale: 1.1 }}
-                        className={`px-6 py-2 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white ${item.accent} shadow-2xl backdrop-blur-md`}
-                      >
-                        {item.badge}
-                      </motion.span>
+                    {/* Interactive Badges - Only Heart remains */}
+                    <div className="absolute top-10 right-10 flex justify-end items-start z-30">
                       <button className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-nova-pink hover:border-transparent transition-all duration-500 transform group-hover:rotate-[360deg]">
                         <Heart className="w-5 h-5 group-hover:fill-current" />
                       </button>
