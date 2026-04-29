@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, Globe, X, ArrowRight, Instagram, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FlowButton } from './ui/flow-button';
 import { Logo } from './ui/logo';
@@ -14,6 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   
   const { scrollY } = useScroll();
+  const smoothScrollY = useSpring(scrollY, { stiffness: 100, damping: 25, restDelta: 0.001 });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -23,21 +24,20 @@ export default function Navbar() {
   }, []);
   
   // Transformation ranges
-  const navWidth = useTransform(scrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
-  const navTop = useTransform(scrollY, [0, 100], [0, isMobile ? 12 : 20]);
-  const navRadius = useTransform(scrollY, [0, 100], [0, 100]);
-  const navPaddingY = useTransform(scrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
-  const navPaddingX = useTransform(scrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
+  const navWidth = useTransform(smoothScrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
+  const navTop = useTransform(smoothScrollY, [0, 100], [0, isMobile ? 12 : 20]);
+  const navRadius = useTransform(smoothScrollY, [0, 100], [0, 100]);
+  const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 10 : 10]);
+  const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 24 : 48, isMobile ? 16 : 32]);
   
-  const navBg = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
-  const navBorder = useTransform(scrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
+  const navBg = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.15)", "rgba(255, 255, 255, 0.8)"]);
+  const navBorder = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.1)", "rgba(255, 255, 255, 0.4)"]);
   
   // Logo movement and scale
-  // For mobile: Left spacer width goes from 1fr to 0px
-  const mobileSpacerFlex = useTransform(scrollY, [0, 100], [1, 0]);
-  const logoScale = useTransform(scrollY, [0, 100], [isMobile ? 1.2 : 1, isMobile ? 0.7 : 0.75]);
-  const sideGap = useTransform(scrollY, [0, 100], [40, 24]);
-  const navShadow = useTransform(scrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
+  const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 24px)" : "0px", "0px"]);
+  const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.2 : 1, isMobile ? 0.7 : 0.75]);
+  const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
+  const navShadow = useTransform(smoothScrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
@@ -71,7 +71,7 @@ export default function Navbar() {
         <motion.nav 
           style={{
             width: navWidth,
-            maxWidth: isMobile ? "400px" : "1100px",
+            maxWidth: isMobile ? "440px" : "1100px",
             top: navTop,
             borderRadius: navRadius,
             backgroundColor: navBg,
@@ -84,12 +84,10 @@ export default function Navbar() {
             borderWidth: 1,
             backdropFilter: "blur(12px)",
           }}
-          className="pointer-events-auto flex items-center justify-between relative overflow-hidden transition-all duration-300"
+          className="pointer-events-auto flex items-center justify-between relative overflow-hidden"
         >
-          {/* Left Spacer (Mobile) / Nav Links (Desktop) */}
-          {isMobile ? (
-            <motion.div style={{ flex: mobileSpacerFlex }} className="md:hidden" />
-          ) : (
+          {/* Left Spacer (Desktop Only) */}
+          {!isMobile && (
             <motion.div 
               style={{ gap: sideGap }}
               className="hidden md:flex flex-1 items-center text-[10px] font-bold tracking-[0.2em] uppercase text-nova-text/60"
@@ -105,16 +103,16 @@ export default function Navbar() {
             </motion.div>
           )}
           
-          {/* Logo */}
-          <Link to="/" className="flex flex-shrink-0 items-center justify-center">
-            <motion.div style={{ scale: logoScale }}>
+          {/* Logo - Smoothly animated X translation */}
+          <Link to="/" className="flex flex-shrink-0 items-center justify-center z-10">
+            <motion.div style={{ x: logoX, scale: logoScale }} className="origin-left">
               <Logo />
             </motion.div>
           </Link>
 
-          {/* Right Spacer (Mobile) / Nav Buttons (Desktop) */}
+          {/* Right Spacer (Mobile & Desktop) */}
           {isMobile ? (
-            <div className="flex md:hidden items-center justify-end flex-1">
+            <div className="flex flex-1 items-center justify-end">
               <button 
                 onClick={toggleMenu}
                 className="p-2 text-nova-text hover:text-nova-pink transition-colors"
