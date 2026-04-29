@@ -14,7 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   
   const { scrollY } = useScroll();
-  const smoothScrollY = useSpring(scrollY, { stiffness: 200, damping: 30, restDelta: 0.01 });
+  const smoothScrollY = useSpring(scrollY, { stiffness: 200, damping: 30, restDelta: 0.1 });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -30,16 +30,16 @@ export default function Navbar() {
   const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 20 : 32, isMobile ? 10 : 12]);
   const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 40 : 80, isMobile ? 16 : 32]);
   
-  // Background and border start completely transparent - more gradual transition with dead zone at 0
-  const navBg = useTransform(smoothScrollY, [20, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]);
-  const navBorder = useTransform(smoothScrollY, [20, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
+  // Background and border start completely transparent - Dead zone until 40px
+  const navBg = useTransform(smoothScrollY, [40, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]);
+  const navBorder = useTransform(smoothScrollY, [40, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
   
   // Logo movement: starts centered on mobile, then glides left
   // Scale starts larger, then shrinks into the pill
   const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 40px)" : "0px", "0px"]);
   const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.3 : 1.1, isMobile ? 0.75 : 0.8]);
   const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
-  const navShadow = useTransform(smoothScrollY, [0, 150], ["0 0px 0px rgba(0,0,0,0)", "0 10px 25px -5px rgba(0,0,0,0.1)"]);
+  const navShadow = useTransform(smoothScrollY, [50, 150], ["0 0px 0px rgba(0,0,0,0)", "0 10px 25px -5px rgba(0,0,0,0.1)"]);
   const navBlur = useTransform(smoothScrollY, [0, 150], ["blur(0px)", "blur(20px)"]);
 
   const toggleLanguage = () => {
