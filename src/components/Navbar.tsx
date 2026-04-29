@@ -31,7 +31,7 @@ export default function Navbar() {
   const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 40 : 80, isMobile ? 16 : 32]);
   
   // Background and border start completely transparent - more gradual transition with dead zone at 0
-  const navBg = useTransform(smoothScrollY, [20, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]);
+  const navBg = useTransform(smoothScrollY, [20, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]);
   const navBorder = useTransform(smoothScrollY, [20, 150], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
   
   // Logo movement: starts centered on mobile, then glides left
@@ -40,7 +40,7 @@ export default function Navbar() {
   const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.3 : 1.1, isMobile ? 0.75 : 0.8]);
   const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
   const navShadow = useTransform(smoothScrollY, [30, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -10px rgba(0,0,0,0.1)"]);
-  const navBlur = useTransform(smoothScrollY, [20, 100], ["blur(0px)", "blur(12px)"]);
+  const navBlur = useTransform(smoothScrollY, [0, 150], ["blur(0px)", "blur(20px)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
