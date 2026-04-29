@@ -39,7 +39,7 @@ export default function Navbar() {
   const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 40px)" : "0px", "0px"]);
   const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.3 : 1.1, isMobile ? 0.75 : 0.8]);
   const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
-  const navShadow = useTransform(smoothScrollY, [30, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -10px rgba(0,0,0,0.1)"]);
+  const navShadow = useTransform(smoothScrollY, [0, 150], ["0 0px 0px rgba(0,0,0,0)", "0 10px 25px -5px rgba(0,0,0,0.1)"]);
   const navBlur = useTransform(smoothScrollY, [0, 150], ["blur(0px)", "blur(20px)"]);
 
   const toggleLanguage = () => {
