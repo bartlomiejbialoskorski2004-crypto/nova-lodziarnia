@@ -23,21 +23,23 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  // Transformation ranges - Always a pill, never a flat rectangle
-  const navWidth = useTransform(smoothScrollY, [0, 100], [isMobile ? "94%" : "96%", isMobile ? "92%" : "85%"]);
-  const navTop = useTransform(smoothScrollY, [0, 100], [isMobile ? 12 : 16, isMobile ? 12 : 24]);
-  const navRadius = 100; // Constant pill shape
-  const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 16 : 20, isMobile ? 10 : 10]);
-  const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 24 : 40, isMobile ? 16 : 32]);
+  // Transformation ranges - Ultra-smooth transition from invisible/expanded to compact pill
+  const navWidth = useTransform(smoothScrollY, [0, 100], ["100%", isMobile ? "92%" : "85%"]);
+  const navTop = useTransform(smoothScrollY, [0, 100], [isMobile ? 16 : 24, isMobile ? 12 : 24]);
+  const navRadius = 100; 
+  const navPaddingY = useTransform(smoothScrollY, [0, 100], [isMobile ? 20 : 32, isMobile ? 10 : 12]);
+  const navPaddingX = useTransform(smoothScrollY, [0, 100], [isMobile ? 40 : 80, isMobile ? 16 : 32]);
   
-  const navBg = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.4)", "rgba(255, 255, 255, 0.85)"]);
-  const navBorder = useTransform(smoothScrollY, [0, 100], ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 0.5)"]);
+  // Background and border start completely transparent
+  const navBg = useTransform(smoothScrollY, [0, 80], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]);
+  const navBorder = useTransform(smoothScrollY, [0, 80], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.5)"]);
   
-  // Logo movement and scale
-  const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 24px)" : "0px", "0px"]);
-  const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.2 : 1, isMobile ? 0.7 : 0.75]);
+  // Logo movement: starts centered on mobile, then glides left
+  // Scale starts larger, then shrinks into the pill
+  const logoX = useTransform(smoothScrollY, [0, 100], [isMobile ? "calc(50vw - 50% - 40px)" : "0px", "0px"]);
+  const logoScale = useTransform(smoothScrollY, [0, 100], [isMobile ? 1.3 : 1.1, isMobile ? 0.75 : 0.8]);
   const sideGap = useTransform(smoothScrollY, [0, 100], [40, 24]);
-  const navShadow = useTransform(smoothScrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -15px rgba(0,0,0,0.1)"]);
+  const navShadow = useTransform(smoothScrollY, [0, 100], ["0 0px 0px rgba(0,0,0,0)", "0 20px 40px -10px rgba(0,0,0,0.1)"]);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'pl' : 'en');
